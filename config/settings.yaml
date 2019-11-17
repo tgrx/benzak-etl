@@ -1,8 +1,18 @@
 default:
-  DEBUG: true
+  DEBUG: false
+  BELORUSNEFT_URL: null
+  BENZAK_API_URL: null
+  BENZAK_API_TOKEN: null
 
 development:
+  BELORUSNEFT_URL: "https://azs.belorusneft.by/sitebeloil/en/center/azs/center/fuel/price/index.html"
+  BENZAK_API_URL: "https://benzak.herokuapp.com/api/v1"
   DEBUG: true
 
 testing:
+  DEBUG: false
+
+production:
+  BELORUSNEFT_URL: "https://azs.belorusneft.by/sitebeloil/en/center/azs/center/fuel/price/index.html"
+  BENZAK_API_URL: "https://benzak.herokuapp.com/api/v1"
   DEBUG: false
