@@ -1,0 +1,8 @@
+default:
+  DEBUG: true
+
+development:
+  DEBUG: true
+
+testing:
+  DEBUG: false

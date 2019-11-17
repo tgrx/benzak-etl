@@ -1,0 +1,9 @@
+[MESSAGES CONTROL]
+
+disable=
+    C0111,  # Missing module docstring
+    C0115,  # Missing class docstring
+    C0301,  # [black] Line too long
+    C0330,  # [black] Wrong hanging indentation before block
+    R0801,  # Duplicate code
+    R0903,  # Too few public methods
