@@ -6,3 +6,6 @@ disable=
     C0301,  # [black] Line too long
     C0330,  # [black] Wrong hanging indentation before block
     R0903,  # Too few public methods
+    W0511,  # todo/fixme
+    W1202,  # Use % formatting in logging functions
+

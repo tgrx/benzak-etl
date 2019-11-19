@@ -1,5 +1,5 @@
 import logging
-from datetime import date, timedelta
+from datetime import date
 
 from benzak_etl.consts import Currency, Fuel
 from benzak_etl.load import save_prices
@@ -62,10 +62,9 @@ def main():
 
             logger.debug(f"fetching html with prices from Belorusneft")
 
-            # date(year=2016, month=7, day=1),
-
             date_to = date.today()
-            date_from = date_to - timedelta(days=7)
+            # date_from = date_to - timedelta(days=7)
+            date_from = date(year=2016, month=7, day=1)
 
             html = belorusneft.get_html(
                 logger,
