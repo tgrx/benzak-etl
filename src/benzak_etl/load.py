@@ -3,18 +3,19 @@ from datetime import date
 from decimal import Decimal
 from typing import Dict
 
-import requests
 from dynaconf import settings
 
 _PRICE_HISTORY_API = f"{settings.BENZAK_API_URL}/price-history/"
 
 
-def save_price(logger, price: Dict):
+async def save_price(logger, session, price: Dict):
     logger.debug(
-        f'calling Benzak price history API: POST "{_PRICE_HISTORY_API}" json={json.dumps(price, indent=2, sort_keys=True)}'
+        f"calling Benzak price history API:"
+        f' POST "{_PRICE_HISTORY_API}"'
+        f" json={json.dumps(price, indent=2, sort_keys=True)}"
     )
 
-    response = requests.post(
+    response = await session.post(
         _PRICE_HISTORY_API,
         json=price,
         headers={"AUTHORIZATION": settings.BENZAK_API_TOKEN},
@@ -22,9 +23,13 @@ def save_price(logger, price: Dict):
     logger.debug(f"got response: {response}")
 
 
-def save_prices(logger, prices: Dict[date, Decimal], currency: int, fuel: int):
+async def save_prices(
+    logger, session, prices: Dict[date, Decimal], currency: int, fuel: int
+):
     logger.debug(
-        f"saving prices for currency={currency}, fuel={fuel}: {len(prices)} prices"
+        f"saving prices"
+        f" for currency={currency}, fuel={fuel}:"
+        f" {len(prices)} prices"
     )
 
     for actual_at, price in prices.items():
@@ -35,6 +40,6 @@ def save_prices(logger, prices: Dict[date, Decimal], currency: int, fuel: int):
             "fuel": fuel,
         }
 
-        save_price(logger, payload)
+        await save_price(logger, session, payload)
 
     logger.debug(f"saved {len(prices)} prices")

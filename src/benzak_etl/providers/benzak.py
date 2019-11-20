@@ -1,6 +1,6 @@
 from typing import Dict, Text
 
-import requests
+from aiohttp import ClientResponse
 from dynaconf import settings
 
 from benzak_etl.consts import BenzakCurrency, BenzakFuel
@@ -9,16 +9,16 @@ _FUEL_API = f"{settings.BENZAK_API_URL}/fuel/"
 _CURRENCY_API = f"{settings.BENZAK_API_URL}/currency/"
 
 
-def build_fuel_map(logger) -> Dict[Text, int]:
-    response = requests.get(_FUEL_API)
+async def build_fuel_map(logger, session) -> Dict[Text, int]:
+    response: ClientResponse = await session.get(_FUEL_API)
 
     msg = f'GET "{_FUEL_API}" -> {response}'
     logger.debug(f"calling Benzak fuel API: {msg}")
 
-    if response.status_code != 200:
+    if response.status != 200:
         raise RuntimeError(f"failed to get fuels from Benzak API: {msg}")
 
-    payload = response.json()
+    payload = await response.json()
     logger.debug(f"got response payload: {len(payload)} objects")
 
     logger.debug(f"parsing fuels from payload")
@@ -29,16 +29,16 @@ def build_fuel_map(logger) -> Dict[Text, int]:
     return fuel_map
 
 
-def build_currency_map(logger) -> Dict[Text, int]:
-    response = requests.get(_CURRENCY_API)
+async def build_currency_map(logger, session) -> Dict[Text, int]:
+    response: ClientResponse = await session.get(_CURRENCY_API)
 
     msg = f'GET "{_CURRENCY_API}" -> {response}'
     logger.debug(f"calling Benzak currency API: {msg}")
 
-    if response.status_code != 200:
+    if response.status != 200:
         raise RuntimeError(f"failed to get currency from Benzak API: {msg}")
 
-    payload = response.json()
+    payload = await response.json()
     logger.debug(f"got response payload: {len(payload)} objects")
 
     logger.debug(f"parsing currencies from payload")

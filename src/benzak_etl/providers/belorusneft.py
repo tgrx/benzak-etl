@@ -3,10 +3,9 @@ from datetime import date, datetime
 from decimal import Decimal
 from typing import Dict, Optional, Text
 
-import requests
+from aiohttp import ClientResponse
 from bs4 import BeautifulSoup, Tag
 from dynaconf import settings
-from requests import Response
 
 from benzak_etl.consts import BelorusneftCurrency, BelorusneftFuel
 
@@ -37,8 +36,9 @@ _FORM_HTML = (
 )
 
 
-def get_html(
+async def get_html(
     logger,
+    session,
     *,
     date_from: Optional[date] = None,
     date_to: Optional[date] = None,
@@ -48,11 +48,11 @@ def get_html(
     logger.debug(f'using Belorusneft URL: "{settings.BELORUSNEFT_URL}"')
 
     kwargs = {"url": settings.BELORUSNEFT_URL}
-    meth = requests.get
+    meth = session.get
 
     # TODO: all->any, but skip empty in kwargs
     if all((date_from, date_to, currency_id, fuel_id)):
-        meth = requests.post
+        meth = session.post
         kwargs["data"] = {
             "date1": date_from.strftime("%d.%m.%Y"),
             "date2": date_to.strftime("%d.%m.%Y"),
@@ -66,20 +66,22 @@ def get_html(
 
     logger.debug(f"sending request with method: {meth.__name__}")
 
-    response: Response = meth(**kwargs)
+    response: ClientResponse = await meth(**kwargs)
     logger.debug(f"got response: {response}")
 
-    if response.status_code != 200:
+    text = await response.text()
+
+    if response.status != 200:
         raise RuntimeError(
             f"failed to get HTML"
             f' from the Belorusneft page "{settings.BELORUSNEFT_URL}":'
-            f" status: {response.status_code},"
-            f" body: {response.text},"
+            f" status: {response.status},"
+            f" body: {text},"
         )
 
     logger.debug(f"parsing html")
 
-    html = BeautifulSoup(response.text, "html.parser")
+    html = BeautifulSoup(text, "html.parser")
     logger.debug(f"parsed html: {len(html)} tags")
 
     return html

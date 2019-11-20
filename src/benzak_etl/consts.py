@@ -1,4 +1,5 @@
 import enum
+from typing import Awaitable, NamedTuple
 
 
 @enum.unique
@@ -65,3 +66,9 @@ class BenzakCurrency(enum.Enum):
 
 
 assert {i.value for i in Currency} == {i.name for i in BenzakCurrency}
+
+
+class ExtractTask(NamedTuple):
+    task: Awaitable
+    fuel: Fuel
+    currency: Currency
