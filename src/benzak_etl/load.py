@@ -1,3 +1,4 @@
+import asyncio
 import json
 from datetime import date
 from decimal import Decimal
@@ -8,7 +9,7 @@ from dynaconf import settings
 _PRICE_HISTORY_API = f"{settings.BENZAK_API_URL}/price-history/"
 
 
-async def save_price(logger, session, price: Dict):
+async def load_price(logger, session, price: Dict):
     logger.debug(
         f"calling Benzak price history API:"
         f' POST "{_PRICE_HISTORY_API}"'
@@ -23,15 +24,18 @@ async def save_price(logger, session, price: Dict):
     logger.debug(f"got response: {response}")
 
 
-async def save_prices(
+async def load_prices(
     logger, session, prices: Dict[date, Decimal], currency: int, fuel: int
 ):
     logger.debug(
-        f"saving prices"
+        f"loading prices"
         f" for currency={currency}, fuel={fuel}:"
         f" {len(prices)} prices"
     )
 
+    logger.debug("creating tasks: load price")
+
+    tasks = []
     for actual_at, price in prices.items():
         payload = {
             "at": actual_at.strftime("%Y-%m-%d"),
@@ -40,6 +44,12 @@ async def save_prices(
             "fuel": fuel,
         }
 
-        await save_price(logger, session, payload)
+        task = asyncio.create_task(load_price(logger, session, payload))
+        tasks.append(task)
+    logger.debug(f"created {len(tasks)} tasks")
 
-    logger.debug(f"saved {len(prices)} prices")
+    logger.debug(f"awaiting tasks: load price")
+
+    for task in tasks:
+        await task
+    logger.debug(f"loaded {len(prices)} prices")

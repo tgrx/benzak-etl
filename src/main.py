@@ -6,56 +6,56 @@ from typing import List
 import aiohttp
 
 from benzak_etl.consts import Currency, ExtractTask, Fuel
-from benzak_etl.load import save_prices
+from benzak_etl.load import load_prices
 from benzak_etl.providers import belorusneft, benzak
 from custom_logging import configure_logging
 
 
-async def build_src_maps(logger, session):
-    logger.debug("fetching html with form from Belorusneft")
+async def extract_src_identities(logger, session):
+    logger.debug("extracting html with form from Belorusneft")
 
-    html = await belorusneft.get_html(logger, session)
-    logger.debug("fetched html")
+    html = await belorusneft.extract_html(logger, session)
+    logger.debug("extracted html")
 
     logger.debug("looking for form in html")
 
-    form = belorusneft.get_form(logger, html)
+    form = belorusneft.extract_form(logger, html)
     logger.debug("found form")
 
-    logger.debug("building fuel map")
+    logger.debug("transforming fuels identities into map")
 
-    fuels = belorusneft.build_fuel_map(logger, form)
-    logger.debug("built fuel map")
+    fuels = belorusneft.transform_fuels(logger, form)
+    logger.debug("transformed fuels")
 
-    logger.debug("building currency map")
+    logger.debug("transforming currency identities into map")
 
-    currency = belorusneft.build_currency_map(logger, form)
-    logger.debug("built currency map")
+    currency = belorusneft.transform_currency(logger, form)
+    logger.debug("transformed currency")
 
     return currency, fuels
 
 
-async def build_dst_maps(logger, session):
-    logger.debug("building fuel map: creating tasks")
+async def extract_dst_identities(logger, session):
+    logger.debug("extracting fuel map: creating tasks")
 
-    fuels_task = asyncio.create_task(benzak.build_fuel_map(logger, session))
-    currency_task = asyncio.create_task(benzak.build_currency_map(logger, session))
+    task_fuels = asyncio.create_task(benzak.extract_fuels(logger, session))
+    task_currency = asyncio.create_task(benzak.extract_currency(logger, session))
     logger.debug("created tasks")
 
     logger.debug("awaiting fuels task")
 
-    fuels = await fuels_task
+    fuels = await task_fuels
     logger.debug("got fuels map")
 
     logger.debug("awaiting currency task")
 
-    currency = await currency_task
+    currency = await task_currency
     logger.debug("got currency map")
 
     return currency, fuels
 
 
-def create_extract_tasks(logger, session, fuels_map, currency_map) -> List[ExtractTask]:
+def extract_prices(logger, session, fuels_map, currency_map) -> List[ExtractTask]:
     tasks = []
 
     for fuel in Fuel:
@@ -78,7 +78,7 @@ def create_extract_tasks(logger, session, fuels_map, currency_map) -> List[Extra
 
             task = ExtractTask(
                 task=asyncio.create_task(
-                    belorusneft.get_html(
+                    belorusneft.extract_html(
                         logger,
                         session,
                         date_from=date_from,
@@ -98,80 +98,80 @@ def create_extract_tasks(logger, session, fuels_map, currency_map) -> List[Extra
     return tasks
 
 
-async def main(session):
+async def etl(session):
     logger = logging.getLogger("etl")
 
-    logger.debug("creating map tasks")
+    logger.debug("creating tasks: extract identities")
 
-    src_map_task = asyncio.create_task(build_src_maps(logger, session))
-    dst_map_task = asyncio.create_task(build_dst_maps(logger, session))
-    logger.debug("created map tasks")
+    task_src = asyncio.create_task(extract_src_identities(logger, session))
+    task_dst = asyncio.create_task(extract_dst_identities(logger, session))
+    logger.debug("created tasks: extract identities")
 
-    logger.debug("awaiting map tasks")
+    logger.debug("awaiting tasks: extract identities")
 
-    src_currency, src_fuels = await src_map_task
-    dst_currency, dst_fuels = await dst_map_task
-    logger.debug("got maps")
+    src_currency, src_fuels = await task_src
+    dst_currency, dst_fuels = await task_dst
+    logger.debug("got identities maps")
 
     logger.debug("creating extract tasks")
 
-    extract_tasks = create_extract_tasks(logger, session, src_fuels, src_currency)
-    logger.debug(f"created extract tasks: {len(extract_tasks)}")
+    tasks_extract = extract_prices(logger, session, src_fuels, src_currency)
+    logger.debug(f"created {len(tasks_extract)} tasks: extract prices")
 
-    logger.debug("creating load tasks")
+    logger.debug("creating tasks: load")
 
-    load_tasks = []
+    tasks_load = []
 
-    for task_n, extract_task in enumerate(extract_tasks):
+    for task_n, task_extract in enumerate(tasks_extract):
         logger.debug(
             f"#{task_n}: extracting prices for"
-            f" {extract_task.fuel} / {extract_task.currency}"
+            f" {task_extract.fuel}, {task_extract.currency}"
         )
 
-        html = await extract_task.task
+        html = await task_extract.task
         logger.debug(f"#{task_n}: extracted html: {len(html)} tags")
 
-        logger.debug(f"#{task_n}: parsing prices from task")
+        logger.debug(f"#{task_n}: transforming prices")
 
-        prices = belorusneft.get_prices(logger, html)
-        logger.debug(f"#{task_n}: parsed prices: {len(prices)}")
+        prices = belorusneft.transform_prices(logger, html)
+        logger.debug(f"#{task_n}: transformed prices: {len(prices)}")
 
         logger.debug(
             f"#{task_n}: creating load task for"
-            f" {extract_task.fuel} / {extract_task.currency}"
+            f" {task_extract.fuel}, {task_extract.currency}"
         )
 
-        load_task = asyncio.create_task(
-            save_prices(
+        task_load = asyncio.create_task(
+            load_prices(
                 logger,
                 session,
                 prices,
-                dst_currency[extract_task.currency.name],
-                dst_fuels[extract_task.fuel.name],
+                dst_currency[task_extract.currency.name],
+                dst_fuels[task_extract.fuel.name],
             )
         )
-        load_tasks.append(load_task)
+        tasks_load.append(task_load)
         logger.debug(
             f"#{task_n}: created load task for"
-            f" {extract_task.fuel} / {extract_task.currency}"
+            f" {task_extract.fuel} / {task_extract.currency}"
         )
 
     logger.debug("awaiting load tasks")
 
-    for task_n, load_task in enumerate(load_tasks):
+    for task_n, task_load in enumerate(tasks_load):
         logger.debug(f"#{task_n}: awaiting load task")
-        await load_task
+        await task_load
         logger.debug(f"#{task_n}: completed load task")
 
-    logger.debug("saved prices")
+    logger.debug("loaded prices")
 
 
-async def run_main():
+async def run_etl():
     async with aiohttp.ClientSession() as session:
-        await main(session)
+        await etl(session)
 
 
 if __name__ == "__main__":
     configure_logging()
     _LOOP = asyncio.get_event_loop()
-    _LOOP.run_until_complete(run_main())
+    _LOOP.run_until_complete(run_etl())

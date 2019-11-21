@@ -9,43 +9,43 @@ _FUEL_API = f"{settings.BENZAK_API_URL}/fuel/"
 _CURRENCY_API = f"{settings.BENZAK_API_URL}/currency/"
 
 
-async def build_fuel_map(logger, session) -> Dict[Text, int]:
-    response: ClientResponse = await session.get(_FUEL_API)
+async def extract_fuels(logger, session) -> Dict[Text, int]:
+    logger.debug(f"calling Benzak fuel API: {_FUEL_API}")
 
-    msg = f'GET "{_FUEL_API}" -> {response}'
-    logger.debug(f"calling Benzak fuel API: {msg}")
+    response: ClientResponse = await session.get(_FUEL_API)
+    logger.debug(f"got response: {response}")
 
     if response.status != 200:
-        raise RuntimeError(f"failed to get fuels from Benzak API: {msg}")
+        raise RuntimeError(f"failed to get fuels from Benzak API: {response}")
 
     payload = await response.json()
     logger.debug(f"got response payload: {len(payload)} objects")
 
-    logger.debug(f"parsing fuels from payload")
+    logger.debug(f"transforming fuel identities into map")
 
     fuel_map = {BenzakFuel(fuel["name"]).name: fuel["id"] for fuel in payload}
-    logger.debug(f"mapped {len(fuel_map)} fuels")
+    logger.debug(f"transformed {len(fuel_map)} fuels")
 
     return fuel_map
 
 
-async def build_currency_map(logger, session) -> Dict[Text, int]:
-    response: ClientResponse = await session.get(_CURRENCY_API)
+async def extract_currency(logger, session) -> Dict[Text, int]:
+    logger.debug(f"calling Benzak currency API: {_CURRENCY_API}")
 
-    msg = f'GET "{_CURRENCY_API}" -> {response}'
-    logger.debug(f"calling Benzak currency API: {msg}")
+    response: ClientResponse = await session.get(_CURRENCY_API)
+    logger.debug(f"got response: {response}")
 
     if response.status != 200:
-        raise RuntimeError(f"failed to get currency from Benzak API: {msg}")
+        raise RuntimeError(f"failed to get currency from Benzak API: {response}")
 
     payload = await response.json()
     logger.debug(f"got response payload: {len(payload)} objects")
 
-    logger.debug(f"parsing currencies from payload")
+    logger.debug(f"transforming currency identities into map")
 
     currency_map = {
         BenzakCurrency(currency["name"]).name: currency["id"] for currency in payload
     }
-    logger.debug(f"mapped {len(currency_map)} currencies")
+    logger.debug(f"transformed {len(currency_map)} currency")
 
     return currency_map

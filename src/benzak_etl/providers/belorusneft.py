@@ -36,7 +36,7 @@ _FORM_HTML = (
 )
 
 
-async def get_html(
+async def extract_html(
     logger,
     session,
     *,
@@ -79,19 +79,18 @@ async def get_html(
             f" body: {text},"
         )
 
-    logger.debug(f"parsing html")
+    logger.debug(f"transforming body into html")
 
     html = BeautifulSoup(text, "html.parser")
-    logger.debug(f"parsed html: {len(html)} tags")
+    logger.debug(f"transformed html: {len(html)} tags")
 
     return html
 
 
-def get_form(logger, html: BeautifulSoup) -> Tag:
+def extract_form(logger, html: BeautifulSoup) -> Tag:
     logger.debug(f"looking for {_FORM_HTML}")
 
     form: Tag = html.find("form", attrs=_FORM_ATTRS)
-
     if not form:
         raise RuntimeError(
             f"failed to find the form {_FORM_HTML}"
@@ -103,7 +102,7 @@ def get_form(logger, html: BeautifulSoup) -> Tag:
     return form
 
 
-def build_fuel_map(logger, form: Tag) -> Dict[Text, Text]:
+def transform_fuels(logger, form: Tag) -> Dict[Text, Text]:
     result = {}
 
     logger.debug(f"looking for all {_FUEL_CHECKBOX_HTML}")
@@ -123,7 +122,7 @@ def build_fuel_map(logger, form: Tag) -> Dict[Text, Text]:
     return result
 
 
-def build_currency_map(logger, form: Tag) -> Dict[Text, Text]:
+def transform_currency(logger, form: Tag) -> Dict[Text, Text]:
     result = {}
 
     logger.debug(f"looking for all <option>")
@@ -142,7 +141,7 @@ def build_currency_map(logger, form: Tag) -> Dict[Text, Text]:
     return result
 
 
-def get_prices(logger, html: BeautifulSoup) -> Dict[date, Decimal]:
+def transform_prices(logger, html: BeautifulSoup) -> Dict[date, Decimal]:
     logger.debug(f"looking for {_PRICES_TABLE_HTML}")
 
     table: Tag = html.find("table", attrs=_PRICES_TABLE_ATTRS)
