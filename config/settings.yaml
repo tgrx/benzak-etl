@@ -3,6 +3,7 @@ default:
   BELORUSNEFT_URL: null
   BENZAK_API_URL: null
   BENZAK_API_TOKEN: null
+  FULL_LOAD: false
 
 development:
   BELORUSNEFT_URL: "https://azs.belorusneft.by/sitebeloil/en/center/azs/center/fuel/price/index.html"

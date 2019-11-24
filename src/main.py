@@ -1,9 +1,11 @@
 import asyncio
 import logging
-from datetime import date
+from datetime import date, timedelta
+from random import randint
 from typing import List
 
 import aiohttp
+from dynaconf import settings
 
 from benzak_etl.consts import Currency, ExtractTask, Fuel
 from benzak_etl.load import load_prices
@@ -58,6 +60,17 @@ async def extract_dst_identities(logger, session):
 def extract_prices(logger, session, fuels_map, currency_map) -> List[ExtractTask]:
     tasks = []
 
+    date_to = date.today()
+    date_from = date_to - timedelta(days=randint(7, 14))
+    if settings.FULL_LOAD:
+        date_from = date(year=2016, month=7, day=1)
+        logger.warning("performing a FULL LOAD")
+
+    logger.debug(
+        f"using dates:"
+        f" {date_from.strftime('%Y-%m-%d')}~{date_to.strftime('%Y-%m-%d')}"
+    )
+
     for fuel in Fuel:
         logger.debug(f"using fuel {fuel}")
 
@@ -67,14 +80,6 @@ def extract_prices(logger, session, fuels_map, currency_map) -> List[ExtractTask
             logger.debug(f"using currency {currency} (still {fuel})")
 
             currency_id = currency_map[currency.name]
-
-            date_to = date.today()
-            date_from = date(year=2016, month=7, day=1)
-
-            logger.debug(
-                f"using dates:"
-                f" {date_from.strftime('%Y-%m-%d')}~{date_to.strftime('%Y-%m-%d')}"
-            )
 
             task = ExtractTask(
                 task=asyncio.create_task(
