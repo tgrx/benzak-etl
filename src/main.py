@@ -74,12 +74,20 @@ def extract_prices(logger, session, fuels_map, currency_map) -> List[ExtractTask
     for fuel in Fuel:
         logger.debug(f"using fuel {fuel}")
 
-        fuel_id = fuels_map[fuel.name]
+        fuel_id = fuels_map.get(fuel.name)
+        if not fuel_id:
+            logger.warning(f"fuel {fuel.name} not found on source, skipping")
+            continue
 
         for currency in Currency:
             logger.debug(f"using currency {currency} (still {fuel})")
 
-            currency_id = currency_map[currency.name]
+            currency_id = currency_map.get(currency.name)
+            if not currency_id:
+                logger.warning(
+                    f"currency {currency.name} not found on source, skipping"
+                )
+                continue
 
             task = ExtractTask(
                 task=asyncio.create_task(
