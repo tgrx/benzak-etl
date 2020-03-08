@@ -1,8 +1,8 @@
 default:
-  DEBUG: false
   BELORUSNEFT_URL: null
-  BENZAK_API_URL: null
   BENZAK_API_TOKEN: null
+  BENZAK_API_URL: null
+  DEBUG: false
   FULL_LOAD: false
 
 development:
