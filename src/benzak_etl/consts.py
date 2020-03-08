@@ -1,5 +1,6 @@
 import enum
-from typing import Awaitable, NamedTuple
+from typing import Awaitable
+from typing import NamedTuple
 
 
 @enum.unique

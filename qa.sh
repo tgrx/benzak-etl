@@ -19,7 +19,7 @@ set -o pipefail
 
 export ENV_FOR_DYNACONF=testing
 
-pipenv run pytest
+PYTHONPATH=src pipenv run pytest
 pipenv run black --check . || abort "BLACK IS NOT HAPPY"
 pipenv run flake8 || abort "FLAKE8 IS NOT HAPPY"
 pipenv run pylint ./src/ || abort "PYLINT IS NOT HAPPY"

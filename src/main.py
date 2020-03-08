@@ -1,15 +1,19 @@
 import asyncio
 import logging
-from datetime import date, timedelta
+from datetime import date
+from datetime import timedelta
 from random import randint
 from typing import List
 
 import aiohttp
 from dynaconf import settings
 
-from benzak_etl.consts import Currency, ExtractTask, Fuel
+from benzak_etl.consts import Currency
+from benzak_etl.consts import ExtractTask
+from benzak_etl.consts import Fuel
 from benzak_etl.load import load_prices
-from benzak_etl.providers import belorusneft, benzak
+from benzak_etl.providers import belorusneft
+from benzak_etl.providers import benzak
 from custom_logging import configure_logging
 
 

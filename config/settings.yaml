@@ -11,6 +11,7 @@ development:
   DEBUG: true
 
 testing:
+  BELORUSNEFT_URL: "tests/belorusneft_prices.html"
   DEBUG: false
 
 production:

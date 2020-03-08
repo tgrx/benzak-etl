@@ -1,9 +1,11 @@
-from typing import Dict, Text
+from typing import Dict
+from typing import Text
 
 from aiohttp import ClientResponse
 from dynaconf import settings
 
-from benzak_etl.consts import BenzakCurrency, BenzakFuel
+from benzak_etl.consts import BenzakCurrency
+from benzak_etl.consts import BenzakFuel
 
 _FUEL_API = f"{settings.BENZAK_API_URL}/fuel/"
 _CURRENCY_API = f"{settings.BENZAK_API_URL}/currency/"

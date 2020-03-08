@@ -14,7 +14,7 @@ def test_config():
     for arg in MANDATORY_CONFIG_ARGS:
         assert hasattr(settings, arg)
 
-    assert settings.BELORUSNEFT_URL is None
+    assert settings.BELORUSNEFT_URL == "tests/belorusneft_prices.html"
     assert settings.BENZAK_API_TOKEN is None
     assert settings.BENZAK_API_URL is None
     assert settings.DEBUG is False

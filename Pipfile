@@ -17,4 +17,3 @@ aiohttp = {extras = ["speedups"],version = "*"}
 beautifulsoup4 = "*"
 dynaconf = {extras = ["yaml"],version = "*"}
 requests = "*"
-

@@ -1,13 +1,18 @@
 import json
-from datetime import date, datetime
+from datetime import date
+from datetime import datetime
 from decimal import Decimal
-from typing import Dict, Optional, Text
+from typing import Dict
+from typing import Optional
+from typing import Text
 
 from aiohttp import ClientResponse
-from bs4 import BeautifulSoup, Tag
+from bs4 import BeautifulSoup
+from bs4 import Tag
 from dynaconf import settings
 
-from benzak_etl.consts import BelorusneftCurrency, BelorusneftFuel
+from benzak_etl.consts import BelorusneftCurrency
+from benzak_etl.consts import BelorusneftFuel
 
 _FUEL_CHECKBOX_ATTRS = {"name": "fuelCheckbox", "type": "checkbox"}
 _FUEL_CHECKBOX_HTML = (
@@ -16,7 +21,7 @@ _FUEL_CHECKBOX_HTML = (
     + ">"
 )
 
-_PRICES_TABLE_ATTRS = {"class": "beloil_table", "id": "fuel"}
+_PRICES_TABLE_ATTRS = {"class": "beloil_table"}
 _PRICES_TABLE_HTML = (
     "<table "
     + " ".join(f'{_a}="{_v}"' for _a, _v in sorted(_PRICES_TABLE_ATTRS.items()))

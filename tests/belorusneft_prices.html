@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+
+    <title>Today on sale</title>
+
+
+    <link href="/sitebeloil/system/modules/by.iba.beloil.templates/resources/css/style.css?2" rel="stylesheet">
+
+
+    <link href="/sitebeloil/system/modules/by.iba.beloil.templates/resources/img/apple-touch-icon-114.png" rel="apple-touch-icon"
+          sizes="57x57"/>
+    <link href="/sitebeloil/system/modules/by.iba.beloil.templates/resources/img/apple-touch-icon-114.png" rel="apple-touch-icon"
+          sizes="114x114"/>
+    <link href="/sitebeloil/system/modules/by.iba.beloil.templates/resources/img/apple-touch-icon-144.png" rel="apple-touch-icon"
+          sizes="72x72"/>
+    <link href="/sitebeloil/system/modules/by.iba.beloil.templates/resources/img/apple-touch-icon-144.png" rel="apple-touch-icon"
+          sizes="144x144"/>
+
+    <link href="/sitebeloil/system/modules/by.iba.beloil.templates/resources/img/favicon.ico" rel="shortcut icon"
+          type="image/x-icon"/>
+    <!--[if IE]>
+    <link href="/sitebeloil/system/modules/by.iba.beloil.templates/resources/css/style-ie.css" rel="stylesheet"
+          type="text/css" media="all"></link><![endif]-->
+    <!--[if IE]>
+    <script type="text/javascript"
+            src="/sitebeloil/system/modules/by.iba.beloil.fuel.price/resources/js/excanvas.js"></script><![endif]-->
+    <style>
+        @font-face {
+            font-family: 'PTMagistralRegular';
+            src: url('/sitebeloil/system/modules/by.iba.beloil.templates/resources/css/magistralwebfont.woff') format('woff'),
+            url('/sitebeloil/system/modules/by.iba.beloil.templates/resources/css/magistralwebfont.ttf') format('truetype'),
+            url('/sitebeloil/system/modules/by.iba.beloil.templates/resources/css/magistralwebfont.svg') format('svg');
+            font-weight: normal;
+            font-style: normal;
+
+        }
+
+        @font-face {
+            font-family: 'MagistralCBold';
+            src: url('/sitebeloil/system/modules/by.iba.beloil.templates/resources/css/magistralc-boldwebfont.woff') format('woff'),
+            url('/sitebeloil/system/modules/by.iba.beloil.templates/resources/css/magistralc-boldwebfont.ttf') format('truetype'),
+            url('/sitebeloil/system/modules/by.iba.beloil.templates/resources/css/magistralc-boldwebfont.svg') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+
+
+    <script src="/sitebeloil/system/modules/by.iba.beloil.templates/resources/js/jquery.min-1.5.js"></script>
+    <script src="/sitebeloil/system/modules/by.iba.beloil.templates/resources/js/ie.js"></script>
+
+    <link href="/sitebeloil/system/modules/by.iba.beloil.templates/resources/printCss/960.css" media="screen"
+          rel="stylesheet" type="text/css"/>
+    <link href="/sitebeloil/system/modules/by.iba.beloil.templates/resources/printCss/screen.css" media="screen"
+          rel="stylesheet" type="text/css"/>
+    <link href="/sitebeloil/system/modules/by.iba.beloil.templates/resources/printCss/print.css" media="print"
+          rel="stylesheet" type="text/css"/>
+    <link href="/sitebeloil/system/modules/by.iba.beloil.templates/resources/printCss/print-preview.css"
+          media="screen" rel="stylesheet"
+          type="text/css"/>
+    <script src="/sitebeloil/system/modules/by.iba.beloil.templates/resources/js/jquery.tools.min.js"></script>
+    <script src="/sitebeloil/system/modules/by.iba.beloil.templates/resources/js/jquery.print-preview.js"></script>
+    <style>
+        #print-modal-controls a.close {
+            background: url("/sitebeloil/system/modules/by.iba.beloil.templates/resources/printCss/imagesPrint/images2/icon-close.png") no-repeat scroll 50% 50% transparent !important;
+        }
+
+        #print-modal-controls a.print {
+            background: url("/sitebeloil/system/modules/by.iba.beloil.templates/resources/printCss/imagesPrint/images2/icon-print.png") no-repeat scroll 50% 50% transparent;
+        }
+
+        a.print-preview {
+
+        }
+    </style>
+
+
+    <!-- NT -->
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-KQDBDNR');</script>
+    <!-- End NT -->
+    <script src="/sitebeloil/system/modules/by.iba.beloil.templates/resources/js/jquery.jNice.js"></script>
+
+    <script src="/sitebeloil/system/modules/by.iba.beloil.templates/resources/js/jquery.cookie.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".topicSelect").each(function () {
+                var element = this;
+                if (element.nodeName == "SELECT") {
+                    $(element).change(function () {
+                        var selectedTopic;
+                        $(".topicSelect").each(function () {
+                            if (this.nodeName == "SELECT") {
+                                $(this).find("option").each(function () {
+                                    if ($(this).attr("selected")) {
+                                        selectedTopic = $(this).text();
+                                    }
+                                });
+                            }
+                        });
+                        $(".topicInput").each(function () {
+                            var elementInput = this;
+                            if (elementInput.nodeName == "INPUT") {
+                                $(elementInput).val(selectedTopic);
+                            }
+                        });
+                    });
+                    $(this).find("option").each(function () {
+                        if ($(this).text() == $.cookie("beloil_page_title")) {
+                            $(this).attr("selected", "selected");
+                        }
+                        ;
+                    });
+                }
+            });
+            $.cookie("beloil_page_title", "Today on sale", {path: '/'});
+        });
+    </script>
+</head>
+
+<body class="inner ru" onload="checkIE()">
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-44889158-1', 'belorusneft.by');
+    ga('send', 'pageview');
+
+</script>
+
+<!-- NT (noscript) -->
+<noscript>
+    <iframe height="0"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-KQDBDNR" style="display:none;visibility:hidden" width="0"></iframe>
+</noscript>
+<!-- End NT (noscript) -->
+
+
+<div class="l-page">
+
+    <div class="h-page">
+
+
+        <!--<script>
+	$(document).ready(function(){
+		$(".text").css("display","none");
+		$(".b-header_search_main").mouseover(function() {
+			$(".text").css("display","block");
+		}).mouseout(function() {
+    			$(".text").css("display","none");
+		})
+});
+</script>        -->
+
+
+        <div class="b-header">
+
+            <div class="b-logo">
+                <div id="headerlogocontainer">
+
+
+                    <div>
+                        <a href="/sitebeloil/en" target="_self">
+                            <img alt="" src="/sitebeloil/system/modules/by.iba.beloil.templates/resources/i/b-logo-en.png"
+                                 style="margin-top:5px;margin-bottom:5px;"/>
+                        </a>
+                    </div>
+
+
+                </div>
+                <!--<a href=" /sitebeloil/index.html"><img src="/sitebeloil/system/modules/by.iba.beloil.templates/resources/i/b-logo.png" alt="" /></a>-->
+            </div><!--b-logo-->
+
+
+            <div class="b-header_info_main" style="padding-top: 45px;">
+                <div class="visually_impaired" style="min-width: 285px; margin-bottom: 5px; text-align: center;">
+                    <a class="visually_impaired_span"
+                       href="https://v.belorusneft.by/sitebeloil/en/center/azs/center/fuel/price/index.html">
+                        Version for visually impaired
+                    </a>
+                </div>
+
+
+                <div class="b-header_search_main">
+                    <div id="headercontainer">
+
+
+                        <div>
+
+
+                            <div class="boxbody">
+                                <form action="/sitebeloil/en/addUp/searchResults/" id="searchFormSide" method="post"
+                                      name="searchForm">
+                                    <input name="searchaction" type="hidden" value="search"/>
+                                    <input name="searchPage" type="hidden" value="1"/>
+                                    <div class="text">
+                                        <input name="parsedQuery" type="text" value=""/>
+                                    </div>
+                                    <!--<input type="submit" name="submit" value="" class="submit"/>		изменено 07-10-2016-->
+                                    <input class="submit_search" name="submit" type="submit" value=""/>
+                                </form>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div><!--b-header_search-->
+
+
+                <div class="b-header_links_main">
+                    <a class="visually_impaired_span" href="/sitebeloil/en/center/azs/addUp/contacts/"><img alt=""
+                                                                                                            src="/sitebeloil/system/modules/by.iba.beloil.templates/resources/i/cover.png"/></a>
+
+                    <a href="/sitebeloil/ru/center/azs/center/fuelandService/price/index.html"
+                       style="text-align: center;">Рус</a>
+
+
+                </div><!--b-header_links-->
+
+
+            </div><!--b-header_info-->
+        </div><!--b-header-->
+
+
+        <div class="b-menu">
+
+            <div class="netazs">
+
+                <a href="/sitebeloil/en/center/azs/index.html">
+
+
+                    Fuel stations</a></div>
+
+            <span class="logo"><a href="/sitebeloil/ru/center/azs/addUp/contacts/">Customer support service:  <img
+                    alt="" src="/sitebeloil/.content/images/banners/AZS/mts.png" title="+375 (33)"/> <img alt=""
+                                                                                                          src="/sitebeloil/.content/images/banners/AZS/life.png"
+                                                                                                          style="margin-bottom: -4px;"
+                                                                                                          title="+375 (25)"/> <img
+                    alt="" src="/sitebeloil/.content/images/banners/AZS/a1.png" title="+375 (29)"/> 6-431-431</a></span>
+
+        </div><!--b-menu-->
+
+        <div class="b-main_slider">
+            <div class="b-main_slider__menu">
+
+
+                <ul>
+
+
+                </ul>
+
+            </div><!--b-main_slider__img-->
+            <!--<ul class="dropdown"> commented on 04.05.2013 due to new design-->
+
+            <div class="b-main_slider__menu b-main_slider__menu5">
+                <ul>
+                    <li class="" id="1"><a href="/sitebeloil/en/center/azs/center/search/">Find a station</a>
+                        <div class="tl"></div>
+                        <div class="tr"></div>
+                        <div class="br"></div>
+                        <div class="bl"></div>
+                    </li>
+                    <li class=" subm " id="2"><a href="/sitebeloil/en/center/azs/center/To-car-drivers/">Drivers</a>
+                        <div class="tl"></div>
+                        <div class="tr"></div>
+                        <div class="br"></div>
+                        <div class="bl"></div>
+                        <ul>
+                            <li class=""><span class="ie_t"></span><a
+                                    href="/sitebeloil/en/center/azs/center/To-car-drivers/toll_fiz/">Road payment</a>
+                            </li>
+                            <li class=" last  ie_b_p "><span class="ie_b"></span><a
+                                    href="/sitebeloil/en/center/azs/center/To-car-drivers/Service/">Service at the fuel
+                                stations</a></li>
+                        </ul>
+                    </li>
+                    <li class=" subm " id="3"><a href="/sitebeloil/en/center/azs/center/business/">Business clients</a>
+                        <div class="tl"></div>
+                        <div class="tr"></div>
+                        <div class="br"></div>
+                        <div class="bl"></div>
+                        <ul>
+                            <li class=""><span class="ie_t"></span><a
+                                    href="/sitebeloil/en/center/azs/center/business/client-area/">Client area</a></li>
+                            <li class=""><a href="/sitebeloil/en/center/azs/center/business/card/">Fuel card</a></li>
+                            <li class=""><a href="/sitebeloil/en/center/azs/center/business/roadPayment/">Road
+                                payment</a></li>
+                            <li class=""><a href="/sitebeloil/en/center/azs/center/business/partner/">To networks of gas
+                                stations and processing centers</a></li>
+                            <li class=" last  ie_b_p "><span class="ie_b"></span><a
+                                    href="/sitebeloil/en/center/azs/center/business/Roadside-service/">Roadside
+                                service</a></li>
+                        </ul>
+                    </li>
+                    <li class=" cur_azs " id="4"><a href="/sitebeloil/en/center/azs/center/fuel/">Fuel</a>
+                        <div class="tl"></div>
+                        <div class="tr"></div>
+                        <div class="br"></div>
+                        <div class="bl"></div>
+                    </li>
+                    <li class=" last " id="5"><a href="/sitebeloil/en/center/azs/center/about/">About our fuel
+                        stations</a>
+                        <div class="tl"></div>
+                        <div class="tr"></div>
+                        <div class="br"></div>
+                        <div class="bl"></div>
+                    </li>
+
+
+                </ul>
+            </div><!--b-main_slider__menu-->
+        </div><!--b-main_slider-->
+
+        <div class="b-inner_content">
+
+            <div class="b-left">
+
+                <div class="b-left__menu">
+
+
+                    <div id="sideMenu">
+                        <ul>
+
+
+                            <li>
+
+
+                                <span> Today on sale </span>
+
+
+                            </li>
+
+
+                            <li>
+
+
+                                <a href="/sitebeloil/en/center/azs/center/fuel/quality/"> Fuel quality </a>
+
+
+                            </li>
+
+
+                            <li>
+
+
+                                <a href="/sitebeloil/en/center/azs/center/fuel/branded-fuel-bn-92/"> Branded fuel
+                                    BN-92 </a>
+
+
+                            </li>
+
+
+                            <li>
+
+
+                                <a href="/sitebeloil/en/center/azs/center/fuel/payment/"> Payment methods </a>
+
+
+                            </li>
+                        </ul>
+                    </div>
+                </div><!--b-left__menu-->
+
+                <div id="leftcontainer">
+
+
+                    <div class="b-left">
+
+                        <div class="b-left__informer">
+                            <div class="b-left__informer_top">
+                                <a href="/sitebeloil/en/center/azs/center/fuelandService/price/">Fuel prices (BYN)</a>
+                            </div><!--b-left__informer_top-->
+                            <table>
+                                <tr>
+                                    <th class="col2">95 RON</th>
+                                    <th class="col2">Diesel -32°C</th>
+                                </tr>
+                                <tr>
+                                    <td class="col2">1.83</td>
+                                    <td class="col2">1.99</td>
+                                </tr>
+                                <tr>
+                                    <th class="col2">92 RON</th>
+                                    <th class="col2">Diesel Euro 5</th>
+                                </tr>
+                                <tr>
+                                    <td class="col2">1.73</td>
+                                    <td class="col2">1.83</td>
+                                </tr>
+                                <tr>
+                                    <th class="col2">LPG *</th>
+                                    <th class="col2">98 RON</th>
+                                </tr>
+                                <tr>
+                                    <td class="col2">0.96</td>
+                                    <td class="col2">1.96</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <p style="font-size: 9px; margin-bottom: 0px;">
+                            *The can differ from station to station depending on supply and demand
+                        </p>
+
+                    </div><!--b-left__informer-->
+
+
+                </div>
+
+
+            </div><!--b-left-->
+
+            <div class="b-right">
+                <!-- begin: breadcrumb -->
+
+                <div class="crumbs" id="crumbs">
+
+
+                    <a href="/sitebeloil/en/center/azs/center/fuel/">
+                        Fuel
+
+                    </a>
+
+
+                    &nbsp;»&nbsp;
+                    <a href="/sitebeloil/en/center/azs/center/fuel/price/">
+                        Today on sale
+
+                    </a>
+
+
+                </div>
+
+                <!-- end: breadcrumb -->
+
+
+                <div id="content">
+
+
+                    <link href="/sitebeloil/system/modules/by.iba.beloil.fuel.price/resources/css/jscal2.css" rel="stylesheet"
+                          type="text/css"/>
+                    <link href="/sitebeloil/system/modules/by.iba.beloil.fuel.price/resources/css/border-radius.css" rel="stylesheet"
+                          type="text/css"/>
+                    <link href="/sitebeloil/system/modules/by.iba.beloil.fuel.price/resources/css/steel.css" rel="stylesheet"
+                          type="text/css"/>
+
+
+                    <link href="/sitebeloil/system/modules/by.iba.beloil.fuel.price/resources/css/style.css" rel="stylesheet"
+                          type="text/css"/>
+
+
+                    <script src="/sitebeloil/system/modules/by.iba.beloil.templates/resources/js/jquery-1.8.2.js"></script>
+                    <script src="/sitebeloil/system/modules/by.iba.beloil.templates/resources/js/jquery.ui.core.js"></script>
+                    <script src="/sitebeloil/system/modules/by.iba.beloil.templates/resources/js/jquery.ui.widget.js"></script>
+                    <script src="/sitebeloil/system/modules/by.iba.beloil.templates/resources/js/jquery.ui.datepicker.js"></script>
+                    <script src="/sitebeloil/system/modules/by.iba.beloil.templates/resources/js/i18n/jquery.ui.datepicker-ru.js"></script>
+                    <link href="/sitebeloil/system/modules/by.iba.beloil.templates/resources/css/jquery.ui.datepicker.css"
+                          rel="stylesheet"/>
+                    <link href="/sitebeloil/system/modules/by.iba.beloil.templates/resources/css/jquery.ui.core.css"
+                          rel="stylesheet"/>
+                    <link href="/sitebeloil/system/modules/by.iba.beloil.templates/resources/css/jquery.ui.theme.css"
+                          rel="stylesheet"/>
+
+
+                    <script src="/sitebeloil/system/modules/by.iba.beloil.fuel.price/resources/js/jquery.jqplot.js"></script>
+                    <script src="/sitebeloil/system/modules/by.iba.beloil.fuel.price/resources/js/shCore.min.js"></script>
+                    <script src="/sitebeloil/system/modules/by.iba.beloil.fuel.price/resources/js/shBrushJScript.min.js"></script>
+                    <script src="/sitebeloil/system/modules/by.iba.beloil.fuel.price/resources/js/shBrushXml.min.js"></script>
+                    <script src="/sitebeloil/system/modules/by.iba.beloil.fuel.price/resources/js/jqplot.highlighter.min.js"></script>
+                    <script src="/sitebeloil/system/modules/by.iba.beloil.fuel.price/resources/js/jqplot.dateaxisRenderer.min.js"></script>
+                    <script src="/sitebeloil/system/modules/by.iba.beloil.fuel.price/resources/js/jqplot.canvasTextRenderer.min.js"></script>
+                    <script src="/sitebeloil/system/modules/by.iba.beloil.fuel.price/resources/js/jqplot.canvasaxisLabelRenderer.min.js"></script>
+
+                    <link href="/sitebeloil/system/modules/by.iba.beloil.fuel.price/resources/css/jquery.jqplot.min.css"
+                          rel="stylesheet"/>
+
+
+                    <script>
+
+
+                        var dateBgn = 'null'
+                        var dateEnd = 'null'
+                        var currentDate = new Date()
+                        var day = currentDate.getDate()
+                        var month = currentDate.getMonth() + 1
+                        var year = currentDate.getFullYear()
+                        var dateString = year + "-" + month + "-" + day;
+
+                        $(document).ready(function () {
+
+
+                            if (dateBgn != "null") {
+                                $("#f_date1").val(dateBgn);
+                                $("#stDate").val(dateBgn);
+
+                            } else {
+                                $("#f_date1").val('08.03.2019');
+                                $("#stDate").val($("#f_date1").val());
+                            }
+                            if (dateEnd != "null") {
+                                $("#f_date2").val(dateEnd);
+                            } else {
+                                $("#f_date2").val('08.03.2020');
+                            }
+                            $("#my_select").find("option").each(function () {
+                                if ($(this).val() == "null") {
+                                    $(this).attr("selected", "selected");
+                                }
+                                ;
+                            });
+                            $("#f_date1").datepicker({
+                                showOn: "button",
+                                buttonImage: "/sitebeloil/system/modules/by.iba.beloil.templates/resources/css/images/bo_cal_ico.png",
+                                buttonImageOnly: true,
+                                maxDate: '06.03.2020'
+
+
+                            });
+                            $("#f_date1").datepicker($.datepicker.regional["ru"]);
+
+                            $("#f_date2").datepicker({
+                                showOn: "button",
+                                buttonImage: "/sitebeloil/system/modules/by.iba.beloil.templates/resources/css/images/bo_cal_ico.png",
+                                buttonImageOnly: true,
+                                maxDate: '08.03.2020'
+                            });
+                            $("#f_date2").datepicker($.datepicker.regional["ru"]);
+                        });
+
+                        function validate_form() {
+                            valid = true;
+                            if (document.getElementById('f_date1').value == "") {
+                                alert("Пожалуйста, заполните поле 'Начало периода'.");
+                                valid = false;
+                            }
+                            if (document.getElementById('f_date2').value == "") {
+                                alert("Пожалуйста, заполните поле 'Конец периода'.");
+                                valid = false;
+                            }
+                            var days = ($.datepicker.parseDate('dd.mm.yy', $("#f_date2").val()) - $.datepicker.parseDate('dd.mm.yy', $("#f_date1").val())) / (1000 * 60 * 60 * 24);
+
+                            if (days < 2 && days >= 0) {
+                                alert('Между датой начала и конца диапазона должно быть минимум 3 дня');
+                                valid = false;
+                            } else if (days < 0) {
+                                alert('Между датой начала должна быть меньше даты конца периода');
+                                valid = false;
+                            }
+                            return valid;
+                        }
+
+
+                    </script>
+
+
+                    <h2>Today on sale: </h2>
+                    <form action="#" id="input" method="post" name="input" onsubmit="return validate_form();">
+                        <table>
+                            <tr>
+                                <td>Period start:</td>
+                                <td>
+                                    <input id="f_date1" name="date1" size="30"/>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>Period end:</td>
+                                <td>
+                                    <input id="f_date2" name="date2" size="30"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Currency:</td>
+                                <td>
+                                    <select id="currency" name='currency'>
+                                        <option selected value="byr"
+                                        >Belarusian rubles
+                                        </option>
+                                        <option value="usd">US dollars</option>
+                                        <option value="eur">Euro</option>
+                                        <option value="rub">Russian rubles</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Fuel:</td>
+                                <td>
+
+                                    <input checked="checked" name="fuelCheckbox" type="checkbox" value="1366704419951"/>95
+                                    RON<input name="fuelCheckbox" type="checkbox" value="1366704839817"/>Diesel
+                                    -32°C<input checked="checked" name="fuelCheckbox" type="checkbox"
+                                                value="1366704860839"/>92 RON<input checked="checked" name="fuelCheckbox"
+                                                                                type="checkbox"
+                                                                                value="1366704869982"/>Diesel Euro 5<input
+                                        name="fuelCheckbox" type="checkbox" value="1366704870002"/>LPG *<input
+                                        name="fuelCheckbox" type="checkbox" value="1366704870001"/>98 RON
+
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="height: 30px;">
+                                    <input id="submit" name="submit" onclick="form.action='#'" style="height:25px;" type="submit"
+                                           value="Find"/>
+
+                                    <!--<input style="height:25px;" type="submit" id="submitReport" name="submitReport" value="Export Excel" onclick = "form.action='/ExportServlet/ExportFuelExcelServlet';" /> -->
+                                </td>
+                                <td>
+                                    <input id="my_field" name="hidden" type="hidden" value="field"/>
+                                </td>
+
+                            </tr>
+                        </table>
+
+                    </form>
+
+
+                    <script>
+
+                        $(document).ready(function () {
+                            var labels = ["95 RON", "92 RON", "Diesel Euro 5"];
+                            $.jqplot('chartdiv', [[[new Date(2019, 2, 8), 1.56], [new Date(2019, 2, 9), 1.56], [new Date(2019, 2, 10), 1.57], [new Date(2019, 2, 11), 1.57], [new Date(2019, 2, 12), 1.57], [new Date(2019, 2, 13), 1.57], [new Date(2019, 2, 14), 1.57], [new Date(2019, 2, 15), 1.57], [new Date(2019, 2, 16), 1.57], [new Date(2019, 2, 17), 1.58], [new Date(2019, 2, 18), 1.58], [new Date(2019, 2, 19), 1.58], [new Date(2019, 2, 20), 1.58], [new Date(2019, 2, 21), 1.58], [new Date(2019, 2, 22), 1.58], [new Date(2019, 2, 23), 1.58], [new Date(2019, 2, 24), 1.59], [new Date(2019, 2, 25), 1.59], [new Date(2019, 2, 26), 1.59], [new Date(2019, 2, 27), 1.59], [new Date(2019, 2, 28), 1.59], [new Date(2019, 2, 29), 1.59], [new Date(2019, 2, 30), 1.59], [new Date(2019, 2, 31), 1.6], [new Date(2019, 2, 31), 1.6], [new Date(2019, 3, 1), 1.6], [new Date(2019, 3, 2), 1.6], [new Date(2019, 3, 3), 1.6], [new Date(2019, 3, 4), 1.6], [new Date(2019, 3, 5), 1.6], [new Date(2019, 3, 6), 1.6], [new Date(2019, 3, 7), 1.61], [new Date(2019, 3, 8), 1.61], [new Date(2019, 3, 9), 1.61], [new Date(2019, 3, 10), 1.61], [new Date(2019, 3, 11), 1.61], [new Date(2019, 3, 12), 1.61], [new Date(2019, 3, 13), 1.61], [new Date(2019, 3, 14), 1.62], [new Date(2019, 3, 15), 1.62], [new Date(2019, 3, 16), 1.62], [new Date(2019, 3, 17), 1.62], [new Date(2019, 3, 18), 1.62], [new Date(2019, 3, 19), 1.62], [new Date(2019, 3, 20), 1.62], [new Date(2019, 3, 21), 1.63], [new Date(2019, 3, 22), 1.63], [new Date(2019, 3, 23), 1.63], [new Date(2019, 3, 24), 1.63], [new Date(2019, 3, 25), 1.63], [new Date(2019, 3, 26), 1.63], [new Date(2019, 3, 27), 1.63], [new Date(2019, 3, 28), 1.64], [new Date(2019, 3, 29), 1.64], [new Date(2019, 3, 30), 1.64], [new Date(2019, 4, 1), 1.64], [new Date(2019, 4, 2), 1.64], [new Date(2019, 4, 3), 1.64], [new Date(2019, 4, 4), 1.64], [new Date(2019, 4, 5), 1.65], [new Date(2019, 4, 6), 1.65], [new Date(2019, 4, 7), 1.65], [new Date(2019, 4, 8), 1.65], [new Date(2019, 4, 9), 1.65], [new Date(2019, 4, 10), 1.65], [new Date(2019, 4, 11), 1.65], [new Date(2019, 4, 12), 1.66], [new Date(2019, 4, 13), 1.66], [new Date(2019, 4, 14), 1.66], [new Date(2019, 4, 15), 1.66], [new Date(2019, 4, 16), 1.66], [new Date(2019, 4, 17), 1.66], [new Date(2019, 4, 18), 1.66], [new Date(2019, 4, 19), 1.67], [new Date(2019, 4, 20), 1.67], [new Date(2019, 4, 21), 1.67], [new Date(2019, 4, 22), 1.67], [new Date(2019, 4, 23), 1.67], [new Date(2019, 4, 24), 1.67], [new Date(2019, 4, 25), 1.67], [new Date(2019, 4, 26), 1.68], [new Date(2019, 4, 27), 1.68], [new Date(2019, 4, 28), 1.68], [new Date(2019, 4, 29), 1.68], [new Date(2019, 4, 30), 1.68], [new Date(2019, 4, 31), 1.68], [new Date(2019, 5, 1), 1.68], [new Date(2019, 5, 2), 1.69], [new Date(2019, 5, 3), 1.69], [new Date(2019, 5, 4), 1.69], [new Date(2019, 5, 5), 1.69], [new Date(2019, 5, 6), 1.69], [new Date(2019, 5, 7), 1.69], [new Date(2019, 5, 8), 1.69], [new Date(2019, 5, 9), 1.68], [new Date(2019, 5, 10), 1.68], [new Date(2019, 5, 11), 1.68], [new Date(2019, 5, 12), 1.68], [new Date(2019, 5, 13), 1.68], [new Date(2019, 5, 14), 1.68], [new Date(2019, 5, 15), 1.68], [new Date(2019, 5, 16), 1.67], [new Date(2019, 5, 17), 1.67], [new Date(2019, 5, 18), 1.67], [new Date(2019, 5, 19), 1.67], [new Date(2019, 5, 20), 1.67], [new Date(2019, 5, 21), 1.67], [new Date(2019, 5, 22), 1.67], [new Date(2019, 5, 23), 1.67], [new Date(2019, 5, 24), 1.67], [new Date(2019, 5, 25), 1.67], [new Date(2019, 5, 26), 1.67], [new Date(2019, 5, 27), 1.67], [new Date(2019, 5, 28), 1.67], [new Date(2019, 5, 29), 1.67], [new Date(2019, 5, 30), 1.67], [new Date(2019, 6, 1), 1.67], [new Date(2019, 6, 2), 1.67], [new Date(2019, 6, 3), 1.67], [new Date(2019, 6, 4), 1.67], [new Date(2019, 6, 5), 1.67], [new Date(2019, 6, 6), 1.67], [new Date(2019, 6, 7), 1.67], [new Date(2019, 6, 8), 1.67], [new Date(2019, 6, 9), 1.67], [new Date(2019, 6, 10), 1.67], [new Date(2019, 6, 11), 1.67], [new Date(2019, 6, 12), 1.67], [new Date(2019, 6, 13), 1.67], [new Date(2019, 6, 14), 1.67], [new Date(2019, 6, 15), 1.67], [new Date(2019, 6, 16), 1.67], [new Date(2019, 6, 17), 1.67], [new Date(2019, 6, 18), 1.67], [new Date(2019, 6, 19), 1.67], [new Date(2019, 6, 20), 1.67], [new Date(2019, 6, 21), 1.66], [new Date(2019, 6, 22), 1.66], [new Date(2019, 6, 23), 1.66], [new Date(2019, 6, 24), 1.66], [new Date(2019, 6, 25), 1.66], [new Date(2019, 6, 26), 1.66], [new Date(2019, 6, 27), 1.66], [new Date(2019, 6, 28), 1.66], [new Date(2019, 6, 29), 1.66], [new Date(2019, 6, 30), 1.66], [new Date(2019, 6, 31), 1.66], [new Date(2019, 7, 1), 1.66], [new Date(2019, 7, 2), 1.66], [new Date(2019, 7, 3), 1.66], [new Date(2019, 7, 4), 1.66], [new Date(2019, 7, 5), 1.66], [new Date(2019, 7, 6), 1.66], [new Date(2019, 7, 7), 1.66], [new Date(2019, 7, 8), 1.66], [new Date(2019, 7, 9), 1.66], [new Date(2019, 7, 10), 1.66], [new Date(2019, 7, 11), 1.65], [new Date(2019, 7, 12), 1.65], [new Date(2019, 7, 13), 1.65], [new Date(2019, 7, 14), 1.65], [new Date(2019, 7, 15), 1.65], [new Date(2019, 7, 16), 1.65], [new Date(2019, 7, 17), 1.65], [new Date(2019, 7, 18), 1.65], [new Date(2019, 7, 19), 1.65], [new Date(2019, 7, 20), 1.65], [new Date(2019, 7, 21), 1.65], [new Date(2019, 7, 22), 1.65], [new Date(2019, 7, 23), 1.65], [new Date(2019, 7, 24), 1.65], [new Date(2019, 7, 25), 1.65], [new Date(2019, 7, 26), 1.65], [new Date(2019, 7, 27), 1.65], [new Date(2019, 7, 28), 1.65], [new Date(2019, 7, 29), 1.65], [new Date(2019, 7, 30), 1.65], [new Date(2019, 7, 31), 1.65], [new Date(2019, 8, 1), 1.65], [new Date(2019, 8, 2), 1.65], [new Date(2019, 8, 3), 1.65], [new Date(2019, 8, 4), 1.65], [new Date(2019, 8, 5), 1.65], [new Date(2019, 8, 6), 1.65], [new Date(2019, 8, 7), 1.65], [new Date(2019, 8, 8), 1.65], [new Date(2019, 8, 9), 1.65], [new Date(2019, 8, 10), 1.65], [new Date(2019, 8, 11), 1.65], [new Date(2019, 8, 12), 1.65], [new Date(2019, 8, 13), 1.65], [new Date(2019, 8, 14), 1.65], [new Date(2019, 8, 15), 1.66], [new Date(2019, 8, 16), 1.66], [new Date(2019, 8, 17), 1.66], [new Date(2019, 8, 18), 1.66], [new Date(2019, 8, 19), 1.66], [new Date(2019, 8, 20), 1.66], [new Date(2019, 8, 21), 1.66], [new Date(2019, 8, 22), 1.67], [new Date(2019, 8, 23), 1.67], [new Date(2019, 8, 24), 1.67], [new Date(2019, 8, 25), 1.67], [new Date(2019, 8, 26), 1.67], [new Date(2019, 8, 27), 1.67], [new Date(2019, 8, 28), 1.67], [new Date(2019, 8, 29), 1.68], [new Date(2019, 8, 30), 1.68], [new Date(2019, 9, 1), 1.68], [new Date(2019, 9, 2), 1.68], [new Date(2019, 9, 3), 1.68], [new Date(2019, 9, 4), 1.68], [new Date(2019, 9, 5), 1.68], [new Date(2019, 9, 6), 1.68], [new Date(2019, 9, 7), 1.68], [new Date(2019, 9, 8), 1.68], [new Date(2019, 9, 9), 1.68], [new Date(2019, 9, 10), 1.68], [new Date(2019, 9, 11), 1.68], [new Date(2019, 9, 12), 1.68], [new Date(2019, 9, 13), 1.68], [new Date(2019, 9, 14), 1.68], [new Date(2019, 9, 15), 1.68], [new Date(2019, 9, 16), 1.68], [new Date(2019, 9, 17), 1.68], [new Date(2019, 9, 18), 1.68], [new Date(2019, 9, 19), 1.68], [new Date(2019, 9, 20), 1.68], [new Date(2019, 9, 21), 1.68], [new Date(2019, 9, 22), 1.68], [new Date(2019, 9, 23), 1.68], [new Date(2019, 9, 24), 1.68], [new Date(2019, 9, 25), 1.68], [new Date(2019, 9, 26), 1.68], [new Date(2019, 9, 27), 1.68], [new Date(2019, 9, 28), 1.68], [new Date(2019, 9, 29), 1.68], [new Date(2019, 9, 30), 1.68], [new Date(2019, 9, 31), 1.68], [new Date(2019, 10, 1), 1.68], [new Date(2019, 10, 2), 1.68], [new Date(2019, 10, 3), 1.68], [new Date(2019, 10, 4), 1.68], [new Date(2019, 10, 5), 1.68], [new Date(2019, 10, 6), 1.68], [new Date(2019, 10, 7), 1.68], [new Date(2019, 10, 8), 1.68], [new Date(2019, 10, 9), 1.68], [new Date(2019, 10, 10), 1.68], [new Date(2019, 10, 11), 1.68], [new Date(2019, 10, 12), 1.68], [new Date(2019, 10, 13), 1.68], [new Date(2019, 10, 14), 1.68], [new Date(2019, 10, 15), 1.68], [new Date(2019, 10, 16), 1.68], [new Date(2019, 10, 17), 1.68], [new Date(2019, 10, 18), 1.68], [new Date(2019, 10, 19), 1.68], [new Date(2019, 10, 20), 1.68], [new Date(2019, 10, 21), 1.68], [new Date(2019, 10, 22), 1.68], [new Date(2019, 10, 23), 1.68], [new Date(2019, 10, 24), 1.69], [new Date(2019, 10, 25), 1.69], [new Date(2019, 10, 26), 1.69], [new Date(2019, 10, 27), 1.69], [new Date(2019, 10, 28), 1.69], [new Date(2019, 10, 29), 1.69], [new Date(2019, 10, 30), 1.69], [new Date(2019, 11, 1), 1.7], [new Date(2019, 11, 2), 1.7], [new Date(2019, 11, 3), 1.7], [new Date(2019, 11, 4), 1.7], [new Date(2019, 11, 5), 1.7], [new Date(2019, 11, 6), 1.7], [new Date(2019, 11, 7), 1.7], [new Date(2019, 11, 8), 1.71], [new Date(2019, 11, 9), 1.71], [new Date(2019, 11, 10), 1.71], [new Date(2019, 11, 11), 1.71], [new Date(2019, 11, 12), 1.71], [new Date(2019, 11, 13), 1.71], [new Date(2019, 11, 14), 1.71], [new Date(2019, 11, 15), 1.72], [new Date(2019, 11, 16), 1.72], [new Date(2019, 11, 17), 1.72], [new Date(2019, 11, 18), 1.72], [new Date(2019, 11, 19), 1.72], [new Date(2019, 11, 20), 1.72], [new Date(2019, 11, 21), 1.72], [new Date(2019, 11, 22), 1.73], [new Date(2019, 11, 23), 1.73], [new Date(2019, 11, 24), 1.73], [new Date(2019, 11, 25), 1.73], [new Date(2019, 11, 26), 1.73], [new Date(2019, 11, 27), 1.73], [new Date(2019, 11, 28), 1.73], [new Date(2019, 11, 29), 1.74], [new Date(2019, 11, 30), 1.74], [new Date(2019, 11, 31), 1.74], [new Date(2020, 0, 1), 1.74], [new Date(2020, 0, 2), 1.74], [new Date(2020, 0, 3), 1.74], [new Date(2020, 0, 4), 1.74], [new Date(2020, 0, 5), 1.75], [new Date(2020, 0, 6), 1.75], [new Date(2020, 0, 7), 1.75], [new Date(2020, 0, 8), 1.75], [new Date(2020, 0, 9), 1.75], [new Date(2020, 0, 10), 1.75], [new Date(2020, 0, 11), 1.75], [new Date(2020, 0, 12), 1.76], [new Date(2020, 0, 13), 1.76], [new Date(2020, 0, 14), 1.76], [new Date(2020, 0, 15), 1.76], [new Date(2020, 0, 16), 1.76], [new Date(2020, 0, 17), 1.76], [new Date(2020, 0, 18), 1.76], [new Date(2020, 0, 19), 1.77], [new Date(2020, 0, 20), 1.77], [new Date(2020, 0, 21), 1.77], [new Date(2020, 0, 22), 1.77], [new Date(2020, 0, 23), 1.77], [new Date(2020, 0, 24), 1.77], [new Date(2020, 0, 25), 1.77], [new Date(2020, 0, 26), 1.78], [new Date(2020, 0, 27), 1.78], [new Date(2020, 0, 28), 1.78], [new Date(2020, 0, 29), 1.78], [new Date(2020, 0, 30), 1.78], [new Date(2020, 0, 31), 1.78], [new Date(2020, 1, 1), 1.78], [new Date(2020, 1, 2), 1.79], [new Date(2020, 1, 3), 1.79], [new Date(2020, 1, 4), 1.79], [new Date(2020, 1, 5), 1.79], [new Date(2020, 1, 6), 1.79], [new Date(2020, 1, 7), 1.79], [new Date(2020, 1, 8), 1.79], [new Date(2020, 1, 9), 1.8], [new Date(2020, 1, 10), 1.8], [new Date(2020, 1, 11), 1.8], [new Date(2020, 1, 12), 1.8], [new Date(2020, 1, 13), 1.8], [new Date(2020, 1, 14), 1.8], [new Date(2020, 1, 15), 1.8], [new Date(2020, 1, 16), 1.81], [new Date(2020, 1, 17), 1.81], [new Date(2020, 1, 18), 1.81], [new Date(2020, 1, 19), 1.81], [new Date(2020, 1, 20), 1.81], [new Date(2020, 1, 21), 1.81], [new Date(2020, 1, 22), 1.81], [new Date(2020, 1, 23), 1.82], [new Date(2020, 1, 24), 1.82], [new Date(2020, 1, 25), 1.82], [new Date(2020, 1, 26), 1.82], [new Date(2020, 1, 27), 1.82], [new Date(2020, 1, 28), 1.82], [new Date(2020, 1, 29), 1.82], [new Date(2020, 2, 1), 1.83], [new Date(2020, 2, 2), 1.83], [new Date(2020, 2, 3), 1.83], [new Date(2020, 2, 4), 1.83], [new Date(2020, 2, 5), 1.83], [new Date(2020, 2, 6), 1.83], [new Date(2020, 2, 7), 1.83], [new Date(2020, 2, 8), 1.83]], [[new Date(2019, 2, 8), 1.45], [new Date(2019, 2, 9), 1.45], [new Date(2019, 2, 10), 1.46], [new Date(2019, 2, 11), 1.46], [new Date(2019, 2, 12), 1.46], [new Date(2019, 2, 13), 1.46], [new Date(2019, 2, 14), 1.46], [new Date(2019, 2, 15), 1.46], [new Date(2019, 2, 16), 1.46], [new Date(2019, 2, 17), 1.47], [new Date(2019, 2, 18), 1.47], [new Date(2019, 2, 19), 1.47], [new Date(2019, 2, 20), 1.47], [new Date(2019, 2, 21), 1.47], [new Date(2019, 2, 22), 1.47], [new Date(2019, 2, 23), 1.47], [new Date(2019, 2, 24), 1.48], [new Date(2019, 2, 25), 1.48], [new Date(2019, 2, 26), 1.48], [new Date(2019, 2, 27), 1.48], [new Date(2019, 2, 28), 1.48], [new Date(2019, 2, 29), 1.48], [new Date(2019, 2, 30), 1.48], [new Date(2019, 2, 31), 1.49], [new Date(2019, 3, 1), 1.49], [new Date(2019, 3, 2), 1.49], [new Date(2019, 3, 3), 1.49], [new Date(2019, 3, 4), 1.49], [new Date(2019, 3, 5), 1.49], [new Date(2019, 3, 6), 1.49], [new Date(2019, 3, 7), 1.5], [new Date(2019, 3, 7), 1.5], [new Date(2019, 3, 8), 1.5], [new Date(2019, 3, 9), 1.5], [new Date(2019, 3, 10), 1.5], [new Date(2019, 3, 11), 1.5], [new Date(2019, 3, 12), 1.5], [new Date(2019, 3, 13), 1.5], [new Date(2019, 3, 14), 1.51], [new Date(2019, 3, 15), 1.51], [new Date(2019, 3, 16), 1.51], [new Date(2019, 3, 17), 1.51], [new Date(2019, 3, 18), 1.51], [new Date(2019, 3, 19), 1.51], [new Date(2019, 3, 20), 1.51], [new Date(2019, 3, 21), 1.52], [new Date(2019, 3, 22), 1.52], [new Date(2019, 3, 23), 1.52], [new Date(2019, 3, 24), 1.52], [new Date(2019, 3, 25), 1.52], [new Date(2019, 3, 26), 1.52], [new Date(2019, 3, 27), 1.52], [new Date(2019, 3, 28), 1.53], [new Date(2019, 3, 29), 1.53], [new Date(2019, 3, 30), 1.53], [new Date(2019, 4, 1), 1.53], [new Date(2019, 4, 2), 1.53], [new Date(2019, 4, 3), 1.53], [new Date(2019, 4, 4), 1.53], [new Date(2019, 4, 5), 1.54], [new Date(2019, 4, 6), 1.54], [new Date(2019, 4, 7), 1.54], [new Date(2019, 4, 8), 1.54], [new Date(2019, 4, 9), 1.54], [new Date(2019, 4, 10), 1.54], [new Date(2019, 4, 11), 1.54], [new Date(2019, 4, 12), 1.55], [new Date(2019, 4, 13), 1.55], [new Date(2019, 4, 14), 1.55], [new Date(2019, 4, 15), 1.55], [new Date(2019, 4, 16), 1.55], [new Date(2019, 4, 17), 1.55], [new Date(2019, 4, 18), 1.55], [new Date(2019, 4, 19), 1.56], [new Date(2019, 4, 20), 1.56], [new Date(2019, 4, 21), 1.56], [new Date(2019, 4, 22), 1.56], [new Date(2019, 4, 23), 1.56], [new Date(2019, 4, 24), 1.56], [new Date(2019, 4, 25), 1.56], [new Date(2019, 4, 26), 1.57], [new Date(2019, 4, 27), 1.57], [new Date(2019, 4, 28), 1.57], [new Date(2019, 4, 29), 1.57], [new Date(2019, 4, 30), 1.57], [new Date(2019, 4, 31), 1.57], [new Date(2019, 5, 1), 1.57], [new Date(2019, 5, 2), 1.58], [new Date(2019, 5, 3), 1.58], [new Date(2019, 5, 4), 1.58], [new Date(2019, 5, 5), 1.58], [new Date(2019, 5, 6), 1.58], [new Date(2019, 5, 7), 1.58], [new Date(2019, 5, 8), 1.58], [new Date(2019, 5, 9), 1.58], [new Date(2019, 5, 10), 1.58], [new Date(2019, 5, 11), 1.58], [new Date(2019, 5, 12), 1.58], [new Date(2019, 5, 13), 1.58], [new Date(2019, 5, 14), 1.58], [new Date(2019, 5, 15), 1.58], [new Date(2019, 5, 16), 1.57], [new Date(2019, 5, 17), 1.57], [new Date(2019, 5, 18), 1.57], [new Date(2019, 5, 19), 1.57], [new Date(2019, 5, 20), 1.57], [new Date(2019, 5, 21), 1.57], [new Date(2019, 5, 22), 1.57], [new Date(2019, 5, 23), 1.57], [new Date(2019, 5, 24), 1.57], [new Date(2019, 5, 25), 1.57], [new Date(2019, 5, 26), 1.57], [new Date(2019, 5, 27), 1.57], [new Date(2019, 5, 28), 1.57], [new Date(2019, 5, 29), 1.57], [new Date(2019, 5, 30), 1.57], [new Date(2019, 6, 1), 1.57], [new Date(2019, 6, 2), 1.57], [new Date(2019, 6, 3), 1.57], [new Date(2019, 6, 4), 1.57], [new Date(2019, 6, 5), 1.57], [new Date(2019, 6, 6), 1.57], [new Date(2019, 6, 7), 1.57], [new Date(2019, 6, 8), 1.57], [new Date(2019, 6, 9), 1.57], [new Date(2019, 6, 10), 1.57], [new Date(2019, 6, 11), 1.57], [new Date(2019, 6, 12), 1.57], [new Date(2019, 6, 13), 1.57], [new Date(2019, 6, 14), 1.57], [new Date(2019, 6, 15), 1.57], [new Date(2019, 6, 16), 1.57], [new Date(2019, 6, 17), 1.57], [new Date(2019, 6, 18), 1.57], [new Date(2019, 6, 19), 1.57], [new Date(2019, 6, 20), 1.57], [new Date(2019, 6, 21), 1.56], [new Date(2019, 6, 22), 1.56], [new Date(2019, 6, 23), 1.56], [new Date(2019, 6, 24), 1.56], [new Date(2019, 6, 25), 1.56], [new Date(2019, 6, 26), 1.56], [new Date(2019, 6, 27), 1.56], [new Date(2019, 6, 28), 1.56], [new Date(2019, 6, 29), 1.56], [new Date(2019, 6, 30), 1.56], [new Date(2019, 6, 31), 1.56], [new Date(2019, 7, 1), 1.56], [new Date(2019, 7, 2), 1.56], [new Date(2019, 7, 3), 1.56], [new Date(2019, 7, 4), 1.56], [new Date(2019, 7, 5), 1.56], [new Date(2019, 7, 6), 1.56], [new Date(2019, 7, 7), 1.56], [new Date(2019, 7, 8), 1.56], [new Date(2019, 7, 9), 1.56], [new Date(2019, 7, 10), 1.56], [new Date(2019, 7, 11), 1.55], [new Date(2019, 7, 12), 1.55], [new Date(2019, 7, 13), 1.55], [new Date(2019, 7, 14), 1.55], [new Date(2019, 7, 15), 1.55], [new Date(2019, 7, 16), 1.55], [new Date(2019, 7, 17), 1.55], [new Date(2019, 7, 18), 1.55], [new Date(2019, 7, 19), 1.55], [new Date(2019, 7, 20), 1.55], [new Date(2019, 7, 21), 1.55], [new Date(2019, 7, 22), 1.55], [new Date(2019, 7, 23), 1.55], [new Date(2019, 7, 24), 1.55], [new Date(2019, 7, 25), 1.55], [new Date(2019, 7, 26), 1.55], [new Date(2019, 7, 27), 1.55], [new Date(2019, 7, 28), 1.55], [new Date(2019, 7, 29), 1.55], [new Date(2019, 7, 30), 1.55], [new Date(2019, 7, 31), 1.55], [new Date(2019, 8, 1), 1.55], [new Date(2019, 8, 2), 1.55], [new Date(2019, 8, 3), 1.55], [new Date(2019, 8, 4), 1.55], [new Date(2019, 8, 5), 1.55], [new Date(2019, 8, 6), 1.55], [new Date(2019, 8, 7), 1.55], [new Date(2019, 8, 8), 1.55], [new Date(2019, 8, 9), 1.55], [new Date(2019, 8, 10), 1.55], [new Date(2019, 8, 11), 1.55], [new Date(2019, 8, 12), 1.55], [new Date(2019, 8, 13), 1.55], [new Date(2019, 8, 14), 1.55], [new Date(2019, 8, 15), 1.56], [new Date(2019, 8, 16), 1.56], [new Date(2019, 8, 17), 1.56], [new Date(2019, 8, 18), 1.56], [new Date(2019, 8, 19), 1.56], [new Date(2019, 8, 20), 1.56], [new Date(2019, 8, 21), 1.56], [new Date(2019, 8, 22), 1.57], [new Date(2019, 8, 23), 1.57], [new Date(2019, 8, 24), 1.57], [new Date(2019, 8, 25), 1.57], [new Date(2019, 8, 26), 1.57], [new Date(2019, 8, 27), 1.57], [new Date(2019, 8, 28), 1.57], [new Date(2019, 8, 29), 1.58], [new Date(2019, 8, 30), 1.58], [new Date(2019, 9, 1), 1.58], [new Date(2019, 9, 2), 1.58], [new Date(2019, 9, 3), 1.58], [new Date(2019, 9, 4), 1.58], [new Date(2019, 9, 5), 1.58], [new Date(2019, 9, 6), 1.58], [new Date(2019, 9, 7), 1.58], [new Date(2019, 9, 8), 1.58], [new Date(2019, 9, 9), 1.58], [new Date(2019, 9, 10), 1.58], [new Date(2019, 9, 11), 1.58], [new Date(2019, 9, 12), 1.58], [new Date(2019, 9, 13), 1.58], [new Date(2019, 9, 14), 1.58], [new Date(2019, 9, 15), 1.58], [new Date(2019, 9, 16), 1.58], [new Date(2019, 9, 17), 1.58], [new Date(2019, 9, 18), 1.58], [new Date(2019, 9, 19), 1.58], [new Date(2019, 9, 20), 1.58], [new Date(2019, 9, 21), 1.58], [new Date(2019, 9, 22), 1.58], [new Date(2019, 9, 23), 1.58], [new Date(2019, 9, 24), 1.58], [new Date(2019, 9, 25), 1.58], [new Date(2019, 9, 26), 1.58], [new Date(2019, 9, 27), 1.58], [new Date(2019, 9, 28), 1.58], [new Date(2019, 9, 29), 1.58], [new Date(2019, 9, 30), 1.58], [new Date(2019, 9, 31), 1.58], [new Date(2019, 10, 1), 1.58], [new Date(2019, 10, 2), 1.58], [new Date(2019, 10, 3), 1.58], [new Date(2019, 10, 4), 1.58], [new Date(2019, 10, 5), 1.58], [new Date(2019, 10, 6), 1.58], [new Date(2019, 10, 7), 1.58], [new Date(2019, 10, 8), 1.58], [new Date(2019, 10, 9), 1.58], [new Date(2019, 10, 10), 1.58], [new Date(2019, 10, 11), 1.58], [new Date(2019, 10, 12), 1.58], [new Date(2019, 10, 13), 1.58], [new Date(2019, 10, 14), 1.58], [new Date(2019, 10, 15), 1.58], [new Date(2019, 10, 16), 1.58], [new Date(2019, 10, 17), 1.58], [new Date(2019, 10, 18), 1.58], [new Date(2019, 10, 19), 1.58], [new Date(2019, 10, 20), 1.58], [new Date(2019, 10, 21), 1.58], [new Date(2019, 10, 22), 1.58], [new Date(2019, 10, 23), 1.58], [new Date(2019, 10, 24), 1.59], [new Date(2019, 10, 25), 1.59], [new Date(2019, 10, 26), 1.59], [new Date(2019, 10, 27), 1.59], [new Date(2019, 10, 28), 1.59], [new Date(2019, 10, 29), 1.59], [new Date(2019, 10, 30), 1.59], [new Date(2019, 11, 1), 1.6], [new Date(2019, 11, 2), 1.6], [new Date(2019, 11, 3), 1.6], [new Date(2019, 11, 4), 1.6], [new Date(2019, 11, 5), 1.6], [new Date(2019, 11, 6), 1.6], [new Date(2019, 11, 7), 1.6], [new Date(2019, 11, 8), 1.61], [new Date(2019, 11, 9), 1.61], [new Date(2019, 11, 10), 1.61], [new Date(2019, 11, 11), 1.61], [new Date(2019, 11, 12), 1.61], [new Date(2019, 11, 13), 1.61], [new Date(2019, 11, 14), 1.61], [new Date(2019, 11, 15), 1.62], [new Date(2019, 11, 16), 1.62], [new Date(2019, 11, 17), 1.62], [new Date(2019, 11, 18), 1.62], [new Date(2019, 11, 19), 1.62], [new Date(2019, 11, 20), 1.62], [new Date(2019, 11, 21), 1.62], [new Date(2019, 11, 22), 1.63], [new Date(2019, 11, 23), 1.63], [new Date(2019, 11, 24), 1.63], [new Date(2019, 11, 25), 1.63], [new Date(2019, 11, 26), 1.63], [new Date(2019, 11, 27), 1.63], [new Date(2019, 11, 28), 1.63], [new Date(2019, 11, 29), 1.64], [new Date(2019, 11, 30), 1.64], [new Date(2019, 11, 31), 1.64], [new Date(2020, 0, 1), 1.64], [new Date(2020, 0, 2), 1.64], [new Date(2020, 0, 3), 1.64], [new Date(2020, 0, 4), 1.64], [new Date(2020, 0, 5), 1.65], [new Date(2020, 0, 6), 1.65], [new Date(2020, 0, 7), 1.65], [new Date(2020, 0, 8), 1.65], [new Date(2020, 0, 9), 1.65], [new Date(2020, 0, 10), 1.65], [new Date(2020, 0, 11), 1.65], [new Date(2020, 0, 12), 1.66], [new Date(2020, 0, 13), 1.66], [new Date(2020, 0, 14), 1.66], [new Date(2020, 0, 15), 1.66], [new Date(2020, 0, 16), 1.66], [new Date(2020, 0, 17), 1.66], [new Date(2020, 0, 18), 1.66], [new Date(2020, 0, 19), 1.67], [new Date(2020, 0, 20), 1.67], [new Date(2020, 0, 21), 1.67], [new Date(2020, 0, 22), 1.67], [new Date(2020, 0, 23), 1.67], [new Date(2020, 0, 24), 1.67], [new Date(2020, 0, 25), 1.67], [new Date(2020, 0, 26), 1.68], [new Date(2020, 0, 27), 1.68], [new Date(2020, 0, 28), 1.68], [new Date(2020, 0, 29), 1.68], [new Date(2020, 0, 30), 1.68], [new Date(2020, 0, 31), 1.68], [new Date(2020, 1, 1), 1.68], [new Date(2020, 1, 2), 1.69], [new Date(2020, 1, 3), 1.69], [new Date(2020, 1, 4), 1.69], [new Date(2020, 1, 5), 1.69], [new Date(2020, 1, 6), 1.69], [new Date(2020, 1, 7), 1.69], [new Date(2020, 1, 8), 1.69], [new Date(2020, 1, 9), 1.7], [new Date(2020, 1, 10), 1.7], [new Date(2020, 1, 11), 1.7], [new Date(2020, 1, 12), 1.7], [new Date(2020, 1, 13), 1.7], [new Date(2020, 1, 14), 1.7], [new Date(2020, 1, 15), 1.7], [new Date(2020, 1, 16), 1.71], [new Date(2020, 1, 17), 1.71], [new Date(2020, 1, 18), 1.71], [new Date(2020, 1, 19), 1.71], [new Date(2020, 1, 20), 1.71], [new Date(2020, 1, 21), 1.71], [new Date(2020, 1, 22), 1.71], [new Date(2020, 1, 23), 1.72], [new Date(2020, 1, 24), 1.72], [new Date(2020, 1, 25), 1.72], [new Date(2020, 1, 26), 1.72], [new Date(2020, 1, 27), 1.72], [new Date(2020, 1, 28), 1.72], [new Date(2020, 1, 29), 1.72], [new Date(2020, 2, 1), 1.73], [new Date(2020, 2, 2), 1.73], [new Date(2020, 2, 3), 1.73], [new Date(2020, 2, 4), 1.73], [new Date(2020, 2, 5), 1.73], [new Date(2020, 2, 6), 1.73], [new Date(2020, 2, 7), 1.73], [new Date(2020, 2, 8), 1.73]], [[new Date(2019, 2, 8), 1.56], [new Date(2019, 2, 9), 1.56], [new Date(2019, 2, 10), 1.57], [new Date(2019, 2, 11), 1.57], [new Date(2019, 2, 12), 1.57], [new Date(2019, 2, 13), 1.57], [new Date(2019, 2, 14), 1.57], [new Date(2019, 2, 15), 1.57], [new Date(2019, 2, 16), 1.57], [new Date(2019, 2, 17), 1.58], [new Date(2019, 2, 18), 1.58], [new Date(2019, 2, 19), 1.58], [new Date(2019, 2, 20), 1.58], [new Date(2019, 2, 21), 1.58], [new Date(2019, 2, 22), 1.58], [new Date(2019, 2, 23), 1.58], [new Date(2019, 2, 24), 1.59], [new Date(2019, 2, 25), 1.59], [new Date(2019, 2, 26), 1.59], [new Date(2019, 2, 27), 1.59], [new Date(2019, 2, 28), 1.59], [new Date(2019, 2, 29), 1.59], [new Date(2019, 2, 30), 1.59], [new Date(2019, 2, 31), 1.6], [new Date(2019, 3, 1), 1.6], [new Date(2019, 3, 2), 1.6], [new Date(2019, 3, 3), 1.6], [new Date(2019, 3, 4), 1.6], [new Date(2019, 3, 5), 1.6], [new Date(2019, 3, 6), 1.6], [new Date(2019, 3, 7), 1.61], [new Date(2019, 3, 8), 1.61], [new Date(2019, 3, 9), 1.61], [new Date(2019, 3, 10), 1.61], [new Date(2019, 3, 11), 1.61], [new Date(2019, 3, 12), 1.61], [new Date(2019, 3, 13), 1.61], [new Date(2019, 3, 14), 1.62], [new Date(2019, 3, 15), 1.62], [new Date(2019, 3, 16), 1.62], [new Date(2019, 3, 17), 1.62], [new Date(2019, 3, 18), 1.62], [new Date(2019, 3, 19), 1.62], [new Date(2019, 3, 20), 1.62], [new Date(2019, 3, 21), 1.63], [new Date(2019, 3, 22), 1.63], [new Date(2019, 3, 23), 1.63], [new Date(2019, 3, 24), 1.63], [new Date(2019, 3, 25), 1.63], [new Date(2019, 3, 26), 1.63], [new Date(2019, 3, 27), 1.63], [new Date(2019, 3, 28), 1.64], [new Date(2019, 3, 29), 1.64], [new Date(2019, 3, 30), 1.64], [new Date(2019, 4, 1), 1.64], [new Date(2019, 4, 2), 1.64], [new Date(2019, 4, 3), 1.64], [new Date(2019, 4, 4), 1.64], [new Date(2019, 4, 5), 1.65], [new Date(2019, 4, 6), 1.65], [new Date(2019, 4, 7), 1.65], [new Date(2019, 4, 8), 1.65], [new Date(2019, 4, 9), 1.65], [new Date(2019, 4, 10), 1.65], [new Date(2019, 4, 11), 1.65], [new Date(2019, 4, 12), 1.66], [new Date(2019, 4, 13), 1.66], [new Date(2019, 4, 14), 1.66], [new Date(2019, 4, 15), 1.66], [new Date(2019, 4, 16), 1.66], [new Date(2019, 4, 17), 1.66], [new Date(2019, 4, 18), 1.66], [new Date(2019, 4, 19), 1.67], [new Date(2019, 4, 20), 1.67], [new Date(2019, 4, 21), 1.67], [new Date(2019, 4, 22), 1.67], [new Date(2019, 4, 23), 1.67], [new Date(2019, 4, 24), 1.67], [new Date(2019, 4, 25), 1.67], [new Date(2019, 4, 26), 1.68], [new Date(2019, 4, 27), 1.68], [new Date(2019, 4, 28), 1.68], [new Date(2019, 4, 29), 1.68], [new Date(2019, 4, 30), 1.68], [new Date(2019, 4, 31), 1.68], [new Date(2019, 5, 1), 1.68], [new Date(2019, 5, 2), 1.69], [new Date(2019, 5, 3), 1.69], [new Date(2019, 5, 4), 1.69], [new Date(2019, 5, 5), 1.69], [new Date(2019, 5, 6), 1.69], [new Date(2019, 5, 7), 1.69], [new Date(2019, 5, 8), 1.69], [new Date(2019, 5, 9), 1.68], [new Date(2019, 5, 10), 1.68], [new Date(2019, 5, 11), 1.68], [new Date(2019, 5, 12), 1.68], [new Date(2019, 5, 13), 1.68], [new Date(2019, 5, 14), 1.68], [new Date(2019, 5, 15), 1.68], [new Date(2019, 5, 16), 1.67], [new Date(2019, 5, 17), 1.67], [new Date(2019, 5, 18), 1.67], [new Date(2019, 5, 19), 1.67], [new Date(2019, 5, 20), 1.67], [new Date(2019, 5, 21), 1.67], [new Date(2019, 5, 22), 1.67], [new Date(2019, 5, 23), 1.67], [new Date(2019, 5, 24), 1.67], [new Date(2019, 5, 25), 1.67], [new Date(2019, 5, 26), 1.67], [new Date(2019, 5, 27), 1.67], [new Date(2019, 5, 28), 1.67], [new Date(2019, 5, 29), 1.67], [new Date(2019, 5, 30), 1.67], [new Date(2019, 6, 1), 1.67], [new Date(2019, 6, 2), 1.67], [new Date(2019, 6, 3), 1.67], [new Date(2019, 6, 4), 1.67], [new Date(2019, 6, 5), 1.67], [new Date(2019, 6, 6), 1.67], [new Date(2019, 6, 7), 1.67], [new Date(2019, 6, 8), 1.67], [new Date(2019, 6, 9), 1.67], [new Date(2019, 6, 10), 1.67], [new Date(2019, 6, 11), 1.67], [new Date(2019, 6, 12), 1.67], [new Date(2019, 6, 13), 1.67], [new Date(2019, 6, 14), 1.67], [new Date(2019, 6, 15), 1.67], [new Date(2019, 6, 16), 1.67], [new Date(2019, 6, 17), 1.67], [new Date(2019, 6, 18), 1.67], [new Date(2019, 6, 19), 1.67], [new Date(2019, 6, 20), 1.67], [new Date(2019, 6, 21), 1.66], [new Date(2019, 6, 22), 1.66], [new Date(2019, 6, 23), 1.66], [new Date(2019, 6, 24), 1.66], [new Date(2019, 6, 25), 1.66], [new Date(2019, 6, 26), 1.66], [new Date(2019, 6, 27), 1.66], [new Date(2019, 6, 28), 1.66], [new Date(2019, 6, 29), 1.66], [new Date(2019, 6, 30), 1.66], [new Date(2019, 6, 31), 1.66], [new Date(2019, 7, 1), 1.66], [new Date(2019, 7, 2), 1.66], [new Date(2019, 7, 3), 1.66], [new Date(2019, 7, 4), 1.66], [new Date(2019, 7, 5), 1.66], [new Date(2019, 7, 6), 1.66], [new Date(2019, 7, 7), 1.66], [new Date(2019, 7, 8), 1.66], [new Date(2019, 7, 9), 1.66], [new Date(2019, 7, 10), 1.66], [new Date(2019, 7, 11), 1.65], [new Date(2019, 7, 12), 1.65], [new Date(2019, 7, 13), 1.65], [new Date(2019, 7, 14), 1.65], [new Date(2019, 7, 15), 1.65], [new Date(2019, 7, 16), 1.65], [new Date(2019, 7, 17), 1.65], [new Date(2019, 7, 18), 1.65], [new Date(2019, 7, 19), 1.65], [new Date(2019, 7, 20), 1.65], [new Date(2019, 7, 21), 1.65], [new Date(2019, 7, 22), 1.65], [new Date(2019, 7, 23), 1.65], [new Date(2019, 7, 24), 1.65], [new Date(2019, 7, 25), 1.65], [new Date(2019, 7, 26), 1.65], [new Date(2019, 7, 27), 1.65], [new Date(2019, 7, 28), 1.65], [new Date(2019, 7, 29), 1.65], [new Date(2019, 7, 30), 1.65], [new Date(2019, 7, 31), 1.65], [new Date(2019, 8, 1), 1.65], [new Date(2019, 8, 2), 1.65], [new Date(2019, 8, 3), 1.65], [new Date(2019, 8, 4), 1.65], [new Date(2019, 8, 5), 1.65], [new Date(2019, 8, 6), 1.65], [new Date(2019, 8, 7), 1.65], [new Date(2019, 8, 8), 1.65], [new Date(2019, 8, 9), 1.65], [new Date(2019, 8, 10), 1.65], [new Date(2019, 8, 11), 1.65], [new Date(2019, 8, 12), 1.65], [new Date(2019, 8, 13), 1.65], [new Date(2019, 8, 14), 1.65], [new Date(2019, 8, 15), 1.66], [new Date(2019, 8, 16), 1.66], [new Date(2019, 8, 17), 1.66], [new Date(2019, 8, 18), 1.66], [new Date(2019, 8, 19), 1.66], [new Date(2019, 8, 20), 1.66], [new Date(2019, 8, 21), 1.66], [new Date(2019, 8, 22), 1.67], [new Date(2019, 8, 23), 1.67], [new Date(2019, 8, 24), 1.67], [new Date(2019, 8, 25), 1.67], [new Date(2019, 8, 26), 1.67], [new Date(2019, 8, 27), 1.67], [new Date(2019, 8, 28), 1.67], [new Date(2019, 8, 29), 1.68], [new Date(2019, 8, 30), 1.68], [new Date(2019, 9, 1), 1.68], [new Date(2019, 9, 2), 1.68], [new Date(2019, 9, 3), 1.68], [new Date(2019, 9, 4), 1.68], [new Date(2019, 9, 5), 1.68], [new Date(2019, 9, 6), 1.68], [new Date(2019, 9, 7), 1.68], [new Date(2019, 9, 8), 1.68], [new Date(2019, 9, 9), 1.68], [new Date(2019, 9, 10), 1.68], [new Date(2019, 9, 11), 1.68], [new Date(2019, 9, 12), 1.68], [new Date(2019, 9, 13), 1.68], [new Date(2019, 9, 14), 1.68], [new Date(2019, 9, 15), 1.68], [new Date(2019, 9, 16), 1.68], [new Date(2019, 9, 17), 1.68], [new Date(2019, 9, 18), 1.68], [new Date(2019, 9, 19), 1.68], [new Date(2019, 9, 20), 1.68], [new Date(2019, 9, 21), 1.68], [new Date(2019, 9, 22), 1.68], [new Date(2019, 9, 23), 1.68], [new Date(2019, 9, 24), 1.68], [new Date(2019, 9, 25), 1.68], [new Date(2019, 9, 26), 1.68], [new Date(2019, 9, 27), 1.68], [new Date(2019, 9, 28), 1.68], [new Date(2019, 9, 29), 1.68], [new Date(2019, 9, 30), 1.68], [new Date(2019, 9, 31), 1.68], [new Date(2019, 10, 1), 1.68], [new Date(2019, 10, 2), 1.68], [new Date(2019, 10, 3), 1.68], [new Date(2019, 10, 4), 1.68], [new Date(2019, 10, 5), 1.68], [new Date(2019, 10, 6), 1.68], [new Date(2019, 10, 7), 1.68], [new Date(2019, 10, 8), 1.68], [new Date(2019, 10, 9), 1.68], [new Date(2019, 10, 10), 1.68], [new Date(2019, 10, 11), 1.68], [new Date(2019, 10, 12), 1.68], [new Date(2019, 10, 13), 1.68], [new Date(2019, 10, 14), 1.68], [new Date(2019, 10, 15), 1.68], [new Date(2019, 10, 16), 1.68], [new Date(2019, 10, 17), 1.68], [new Date(2019, 10, 18), 1.68], [new Date(2019, 10, 19), 1.68], [new Date(2019, 10, 20), 1.68], [new Date(2019, 10, 21), 1.68], [new Date(2019, 10, 22), 1.68], [new Date(2019, 10, 23), 1.68], [new Date(2019, 10, 24), 1.69], [new Date(2019, 10, 25), 1.69], [new Date(2019, 10, 26), 1.69], [new Date(2019, 10, 27), 1.69], [new Date(2019, 10, 28), 1.69], [new Date(2019, 10, 29), 1.69], [new Date(2019, 10, 30), 1.69], [new Date(2019, 11, 1), 1.7], [new Date(2019, 11, 2), 1.7], [new Date(2019, 11, 3), 1.7], [new Date(2019, 11, 4), 1.7], [new Date(2019, 11, 5), 1.7], [new Date(2019, 11, 6), 1.7], [new Date(2019, 11, 7), 1.7], [new Date(2019, 11, 8), 1.71], [new Date(2019, 11, 9), 1.71], [new Date(2019, 11, 10), 1.71], [new Date(2019, 11, 11), 1.71], [new Date(2019, 11, 12), 1.71], [new Date(2019, 11, 13), 1.71], [new Date(2019, 11, 14), 1.71], [new Date(2019, 11, 15), 1.72], [new Date(2019, 11, 16), 1.72], [new Date(2019, 11, 17), 1.72], [new Date(2019, 11, 18), 1.72], [new Date(2019, 11, 19), 1.72], [new Date(2019, 11, 20), 1.72], [new Date(2019, 11, 21), 1.72], [new Date(2019, 11, 22), 1.73], [new Date(2019, 11, 23), 1.73], [new Date(2019, 11, 24), 1.73], [new Date(2019, 11, 25), 1.73], [new Date(2019, 11, 26), 1.73], [new Date(2019, 11, 27), 1.73], [new Date(2019, 11, 28), 1.73], [new Date(2019, 11, 29), 1.74], [new Date(2019, 11, 30), 1.74], [new Date(2019, 11, 31), 1.74], [new Date(2020, 0, 1), 1.74], [new Date(2020, 0, 2), 1.74], [new Date(2020, 0, 3), 1.74], [new Date(2020, 0, 4), 1.74], [new Date(2020, 0, 5), 1.75], [new Date(2020, 0, 6), 1.75], [new Date(2020, 0, 7), 1.75], [new Date(2020, 0, 8), 1.75], [new Date(2020, 0, 9), 1.75], [new Date(2020, 0, 10), 1.75], [new Date(2020, 0, 11), 1.75], [new Date(2020, 0, 12), 1.76], [new Date(2020, 0, 13), 1.76], [new Date(2020, 0, 14), 1.76], [new Date(2020, 0, 15), 1.76], [new Date(2020, 0, 16), 1.76], [new Date(2020, 0, 17), 1.76], [new Date(2020, 0, 18), 1.76], [new Date(2020, 0, 19), 1.77], [new Date(2020, 0, 20), 1.77], [new Date(2020, 0, 21), 1.77], [new Date(2020, 0, 22), 1.77], [new Date(2020, 0, 23), 1.77], [new Date(2020, 0, 24), 1.77], [new Date(2020, 0, 25), 1.77], [new Date(2020, 0, 26), 1.78], [new Date(2020, 0, 27), 1.78], [new Date(2020, 0, 28), 1.78], [new Date(2020, 0, 29), 1.78], [new Date(2020, 0, 30), 1.78], [new Date(2020, 0, 31), 1.78], [new Date(2020, 1, 1), 1.78], [new Date(2020, 1, 2), 1.79], [new Date(2020, 1, 3), 1.79], [new Date(2020, 1, 4), 1.79], [new Date(2020, 1, 5), 1.79], [new Date(2020, 1, 6), 1.79], [new Date(2020, 1, 7), 1.79], [new Date(2020, 1, 8), 1.79], [new Date(2020, 1, 9), 1.8], [new Date(2020, 1, 10), 1.8], [new Date(2020, 1, 11), 1.8], [new Date(2020, 1, 12), 1.8], [new Date(2020, 1, 13), 1.8], [new Date(2020, 1, 14), 1.8], [new Date(2020, 1, 15), 1.8], [new Date(2020, 1, 16), 1.81], [new Date(2020, 1, 17), 1.81], [new Date(2020, 1, 18), 1.81], [new Date(2020, 1, 19), 1.81], [new Date(2020, 1, 20), 1.81], [new Date(2020, 1, 21), 1.81], [new Date(2020, 1, 22), 1.81], [new Date(2020, 1, 23), 1.82], [new Date(2020, 1, 24), 1.82], [new Date(2020, 1, 25), 1.82], [new Date(2020, 1, 26), 1.82], [new Date(2020, 1, 27), 1.82], [new Date(2020, 1, 28), 1.82], [new Date(2020, 1, 29), 1.82], [new Date(2020, 2, 1), 1.83], [new Date(2020, 2, 2), 1.83], [new Date(2020, 2, 3), 1.83], [new Date(2020, 2, 4), 1.83], [new Date(2020, 2, 5), 1.83], [new Date(2020, 2, 6), 1.83], [new Date(2020, 2, 7), 1.83], [new Date(2020, 2, 8), 1.83]]],
+                                {
+                                    title: 'Schedule of price changes at gas-filling stations',
+                                    animate: true,
+                                    animateReplot: true,
+                                    axes: {
+                                        xaxis: {
+                                            renderer: $.jqplot.DateAxisRenderer,
+                                            tickOptions: {formatString: '%d.%m.%Y'},
+                                            rendererOptions: {formatString: '%d.%m.%Y'},
+                                            label: "Date",
+                                            min:
+                                                '08.03.2019'
+                                            ,
+                                            max:
+                                                '08.03.2020'
+                                            ,
+
+                                            numberTicks: undefined
+
+
+                                        },
+                                        yaxis: {
+                                            tickOptions: {
+                                                formatString: '%.2f'
+
+                                            },
+
+                                            labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                                            label: "Belorusian rubles"
+
+                                        }
+                                    },
+                                    seriesDefaults: {
+                                        markerOptions: {
+                                            //style: 'circle',
+                                            lineWidth: 2,
+                                            size: 2,
+                                            shadow: false
+                                        }
+                                    },
+                                    series: [{color: '#D81E05'}, {color: '#FFFF00'}, {color: '#008000'}],
+
+                                    legend: {
+                                        show: true,
+                                        placement: 'outsideGrid',
+                                        labels: labels,
+                                        location: 'ne',
+                                        rowSpacing: '0px'
+                                    },
+
+                                    highlighter: {
+                                        show: true,
+
+                                        sizeAdjust: 4
+
+                                    }
+
+                                });
+                        })
+                    </script>
+                    <div id="chartdiv" style="width: 100%; height: 400px;"></div>
+                    Archive of fuel prices: 95 RON<br/>
+                    <div class="h-ugc">
+                        <table class="beloil_table" style="visibility:visible;">
+                            <tr>
+                                <th>Date</th>
+                                <th>Price</th>
+                            </tr>
+                            <tr>
+                                <td>01.03.2020</td>
+                                <td>1.83</td>
+                            </tr>
+                            <tr>
+                                <td>23.02.2020</td>
+                                <td>1.82</td>
+                            </tr>
+                            <tr>
+                                <td>16.02.2020</td>
+                                <td>1.81</td>
+                            </tr>
+                            <tr>
+                                <td>09.02.2020</td>
+                                <td>1.8</td>
+                            </tr>
+                            <tr>
+                                <td>02.02.2020</td>
+                                <td>1.79</td>
+                            </tr>
+                            <tr>
+                                <td>26.01.2020</td>
+                                <td>1.78</td>
+                            </tr>
+                            <tr>
+                                <td>19.01.2020</td>
+                                <td>1.77</td>
+                            </tr>
+                            <tr>
+                                <td>12.01.2020</td>
+                                <td>1.76</td>
+                            </tr>
+                            <tr>
+                                <td>05.01.2020</td>
+                                <td>1.75</td>
+                            </tr>
+                            <tr>
+                                <td>29.12.2019</td>
+                                <td>1.74</td>
+                            </tr>
+                            <tr>
+                                <td>22.12.2019</td>
+                                <td>1.73</td>
+                            </tr>
+                            <tr>
+                                <td>15.12.2019</td>
+                                <td>1.72</td>
+                            </tr>
+                            <tr>
+                                <td>08.12.2019</td>
+                                <td>1.71</td>
+                            </tr>
+                            <tr>
+                                <td>01.12.2019</td>
+                                <td>1.7</td>
+                            </tr>
+                            <tr>
+                                <td>24.11.2019</td>
+                                <td>1.69</td>
+                            </tr>
+                            <tr>
+                                <td>29.09.2019</td>
+                                <td>1.68</td>
+                            </tr>
+                            <tr>
+                                <td>22.09.2019</td>
+                                <td>1.67</td>
+                            </tr>
+                            <tr>
+                                <td>15.09.2019</td>
+                                <td>1.66</td>
+                            </tr>
+                            <tr>
+                                <td>11.08.2019</td>
+                                <td>1.65</td>
+                            </tr>
+                            <tr>
+                                <td>21.07.2019</td>
+                                <td>1.66</td>
+                            </tr>
+                            <tr>
+                                <td>16.06.2019</td>
+                                <td>1.67</td>
+                            </tr>
+                            <tr>
+                                <td>09.06.2019</td>
+                                <td>1.68</td>
+                            </tr>
+                            <tr>
+                                <td>02.06.2019</td>
+                                <td>1.69</td>
+                            </tr>
+                            <tr>
+                                <td>26.05.2019</td>
+                                <td>1.68</td>
+                            </tr>
+                            <tr>
+                                <td>19.05.2019</td>
+                                <td>1.67</td>
+                            </tr>
+                            <tr>
+                                <td>12.05.2019</td>
+                                <td>1.66</td>
+                            </tr>
+                            <tr>
+                                <td>05.05.2019</td>
+                                <td>1.65</td>
+                            </tr>
+                            <tr>
+                                <td>28.04.2019</td>
+                                <td>1.64</td>
+                            </tr>
+                            <tr>
+                                <td>21.04.2019</td>
+                                <td>1.63</td>
+                            </tr>
+                            <tr>
+                                <td>14.04.2019</td>
+                                <td>1.62</td>
+                            </tr>
+                            <tr>
+                                <td>07.04.2019</td>
+                                <td>1.61</td>
+                            </tr>
+                            <tr>
+                                <td>31.03.2019</td>
+                                <td>1.6</td>
+                            </tr>
+                            <tr>
+                                <td>24.03.2019</td>
+                                <td>1.59</td>
+                            </tr>
+                            <tr>
+                                <td>17.03.2019</td>
+                                <td>1.58</td>
+                            </tr>
+                            <tr>
+                                <td>10.03.2019</td>
+                                <td>1.57</td>
+                            </tr>
+                            <tr>
+                                <td>08.03.2019</td>
+                                <td>1.56</td>
+                            </tr>
+                        </table>
+                    </div>
+                    Archive of fuel prices: 92 RON<br/>
+                    <div class="h-ugc">
+                        <table class="beloil_table" style="visibility:visible;">
+                            <tr>
+                                <th>Date</th>
+                                <th>Price</th>
+                            </tr>
+                            <tr>
+                                <td>01.03.2020</td>
+                                <td>1.73</td>
+                            </tr>
+                            <tr>
+                                <td>23.02.2020</td>
+                                <td>1.72</td>
+                            </tr>
+                            <tr>
+                                <td>16.02.2020</td>
+                                <td>1.71</td>
+                            </tr>
+                            <tr>
+                                <td>09.02.2020</td>
+                                <td>1.7</td>
+                            </tr>
+                            <tr>
+                                <td>02.02.2020</td>
+                                <td>1.69</td>
+                            </tr>
+                            <tr>
+                                <td>26.01.2020</td>
+                                <td>1.68</td>
+                            </tr>
+                            <tr>
+                                <td>19.01.2020</td>
+                                <td>1.67</td>
+                            </tr>
+                            <tr>
+                                <td>12.01.2020</td>
+                                <td>1.66</td>
+                            </tr>
+                            <tr>
+                                <td>05.01.2020</td>
+                                <td>1.65</td>
+                            </tr>
+                            <tr>
+                                <td>29.12.2019</td>
+                                <td>1.64</td>
+                            </tr>
+                            <tr>
+                                <td>22.12.2019</td>
+                                <td>1.63</td>
+                            </tr>
+                            <tr>
+                                <td>15.12.2019</td>
+                                <td>1.62</td>
+                            </tr>
+                            <tr>
+                                <td>08.12.2019</td>
+                                <td>1.61</td>
+                            </tr>
+                            <tr>
+                                <td>01.12.2019</td>
+                                <td>1.6</td>
+                            </tr>
+                            <tr>
+                                <td>24.11.2019</td>
+                                <td>1.59</td>
+                            </tr>
+                            <tr>
+                                <td>29.09.2019</td>
+                                <td>1.58</td>
+                            </tr>
+                            <tr>
+                                <td>22.09.2019</td>
+                                <td>1.57</td>
+                            </tr>
+                            <tr>
+                                <td>15.09.2019</td>
+                                <td>1.56</td>
+                            </tr>
+                            <tr>
+                                <td>11.08.2019</td>
+                                <td>1.55</td>
+                            </tr>
+                            <tr>
+                                <td>21.07.2019</td>
+                                <td>1.56</td>
+                            </tr>
+                            <tr>
+                                <td>16.06.2019</td>
+                                <td>1.57</td>
+                            </tr>
+                            <tr>
+                                <td>02.06.2019</td>
+                                <td>1.58</td>
+                            </tr>
+                            <tr>
+                                <td>26.05.2019</td>
+                                <td>1.57</td>
+                            </tr>
+                            <tr>
+                                <td>19.05.2019</td>
+                                <td>1.56</td>
+                            </tr>
+                            <tr>
+                                <td>12.05.2019</td>
+                                <td>1.55</td>
+                            </tr>
+                            <tr>
+                                <td>05.05.2019</td>
+                                <td>1.54</td>
+                            </tr>
+                            <tr>
+                                <td>28.04.2019</td>
+                                <td>1.53</td>
+                            </tr>
+                            <tr>
+                                <td>21.04.2019</td>
+                                <td>1.52</td>
+                            </tr>
+                            <tr>
+                                <td>14.04.2019</td>
+                                <td>1.51</td>
+                            </tr>
+                            <tr>
+                                <td>07.04.2019</td>
+                                <td>1.5</td>
+                            </tr>
+                            <tr>
+                                <td>31.03.2019</td>
+                                <td>1.49</td>
+                            </tr>
+                            <tr>
+                                <td>24.03.2019</td>
+                                <td>1.48</td>
+                            </tr>
+                            <tr>
+                                <td>17.03.2019</td>
+                                <td>1.47</td>
+                            </tr>
+                            <tr>
+                                <td>10.03.2019</td>
+                                <td>1.46</td>
+                            </tr>
+                            <tr>
+                                <td>08.03.2019</td>
+                                <td>1.45</td>
+                            </tr>
+                        </table>
+                    </div>
+                    Archive of fuel prices: Diesel Euro 5<br/>
+                    <div class="h-ugc">
+                        <table class="beloil_table" style="visibility:visible;">
+                            <tr>
+                                <th>Date</th>
+                                <th>Price</th>
+                            </tr>
+                            <tr>
+                                <td>01.03.2020</td>
+                                <td>1.83</td>
+                            </tr>
+                            <tr>
+                                <td>23.02.2020</td>
+                                <td>1.82</td>
+                            </tr>
+                            <tr>
+                                <td>16.02.2020</td>
+                                <td>1.81</td>
+                            </tr>
+                            <tr>
+                                <td>09.02.2020</td>
+                                <td>1.8</td>
+                            </tr>
+                            <tr>
+                                <td>02.02.2020</td>
+                                <td>1.79</td>
+                            </tr>
+                            <tr>
+                                <td>26.01.2020</td>
+                                <td>1.78</td>
+                            </tr>
+                            <tr>
+                                <td>19.01.2020</td>
+                                <td>1.77</td>
+                            </tr>
+                            <tr>
+                                <td>12.01.2020</td>
+                                <td>1.76</td>
+                            </tr>
+                            <tr>
+                                <td>05.01.2020</td>
+                                <td>1.75</td>
+                            </tr>
+                            <tr>
+                                <td>29.12.2019</td>
+                                <td>1.74</td>
+                            </tr>
+                            <tr>
+                                <td>22.12.2019</td>
+                                <td>1.73</td>
+                            </tr>
+                            <tr>
+                                <td>15.12.2019</td>
+                                <td>1.72</td>
+                            </tr>
+                            <tr>
+                                <td>08.12.2019</td>
+                                <td>1.71</td>
+                            </tr>
+                            <tr>
+                                <td>01.12.2019</td>
+                                <td>1.7</td>
+                            </tr>
+                            <tr>
+                                <td>24.11.2019</td>
+                                <td>1.69</td>
+                            </tr>
+                            <tr>
+                                <td>29.09.2019</td>
+                                <td>1.68</td>
+                            </tr>
+                            <tr>
+                                <td>22.09.2019</td>
+                                <td>1.67</td>
+                            </tr>
+                            <tr>
+                                <td>15.09.2019</td>
+                                <td>1.66</td>
+                            </tr>
+                            <tr>
+                                <td>11.08.2019</td>
+                                <td>1.65</td>
+                            </tr>
+                            <tr>
+                                <td>21.07.2019</td>
+                                <td>1.66</td>
+                            </tr>
+                            <tr>
+                                <td>16.06.2019</td>
+                                <td>1.67</td>
+                            </tr>
+                            <tr>
+                                <td>09.06.2019</td>
+                                <td>1.68</td>
+                            </tr>
+                            <tr>
+                                <td>02.06.2019</td>
+                                <td>1.69</td>
+                            </tr>
+                            <tr>
+                                <td>26.05.2019</td>
+                                <td>1.68</td>
+                            </tr>
+                            <tr>
+                                <td>19.05.2019</td>
+                                <td>1.67</td>
+                            </tr>
+                            <tr>
+                                <td>12.05.2019</td>
+                                <td>1.66</td>
+                            </tr>
+                            <tr>
+                                <td>05.05.2019</td>
+                                <td>1.65</td>
+                            </tr>
+                            <tr>
+                                <td>28.04.2019</td>
+                                <td>1.64</td>
+                            </tr>
+                            <tr>
+                                <td>21.04.2019</td>
+                                <td>1.63</td>
+                            </tr>
+                            <tr>
+                                <td>14.04.2019</td>
+                                <td>1.62</td>
+                            </tr>
+                            <tr>
+                                <td>07.04.2019</td>
+                                <td>1.61</td>
+                            </tr>
+                            <tr>
+                                <td>31.03.2019</td>
+                                <td>1.6</td>
+                            </tr>
+                            <tr>
+                                <td>24.03.2019</td>
+                                <td>1.59</td>
+                            </tr>
+                            <tr>
+                                <td>17.03.2019</td>
+                                <td>1.58</td>
+                            </tr>
+                            <tr>
+                                <td>10.03.2019</td>
+                                <td>1.57</td>
+                            </tr>
+                            <tr>
+                                <td>08.03.2019</td>
+                                <td>1.56</td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <div id="centercontainer"></div>
+                </div>
+
+
+            </div><!--b-right-->
+
+        </div><!--b-inner_content-->
+
+        <div class="b-poosh"></div>
+
+    </div><!--h-page-->
+
+
+    <div class="b-footer">
+        <div class="h-page">
+            <div class="b-index_links">
+
+
+                <a href="/sitebeloil/en/center/azs/addUp/contacts/">Contacts</a> <a
+                    href="/sitebeloil/en/center/azs/addUp/media-center/">Press Centre</a>
+                <div class="b-slider">
+                    <div class="b-slider__i">
+                        <div id="slidercontainer"></div>
+                        <div class="b-slider__body" id="liquid">
+                            <i class="sb-sh-l"></i>
+                            <i class="sb-sh-r"></i>
+                            <span class="previous larr"></span>
+
+                            <div class="wrapper b-slider__body">
+                                <ul class="b-slider__body__i">
+                                    <li class="sb__item"><a href="http://www.president.gov.by/en/" style="width:200px;"
+                                                            target="_blank"><img alt=""
+                                                                                 src="/sitebeloil/.content/images/banners/en/logo01.png"/></a>
+                                    <li class="sb__item"><a href="http://www.government.by/en/" style="width:200px;"
+                                                            target="_blank"><img alt=""
+                                                                                 src="/sitebeloil/.content/images/banners/en/logo02.png"/></a>
+                                    <li class="sb__item"><a href="http://export.by/en/" style="width:200px;"
+                                                            target="_blank"><img alt=""
+                                                                                 src="/sitebeloil/.content/images/banners/en/logo03.png"/></a>
+                                    <li class="sb__item"><a href="http://english.seismo.by/index.php?mod=main2_list"
+                                                            style="width:200px;"
+                                                            target="_blank"><img alt=""
+                                                                                 src="/sitebeloil/.content/images/banners/en/logo04.png"/></a>
+                                    <li class="sb__item"><a href="http://www.bnk.by/home/index.php?lang=en"
+                                                            style="width:200px;"
+                                                            target="_blank"><img alt=""
+                                                                                 src="/sitebeloil/.content/images/banners/en/logo05.png"/></a>
+                                    <li class="sb__item"><a href="http://www.investinbelarus.by/en/"
+                                                            style="width:200px;"
+                                                            target="_blank"><img alt=""
+                                                                                 src="/sitebeloil/.content/images/banners/en/logo06.png"/></a>
+
+                                </ul>
+                            </div>
+                            <span class="next rarr" style="display: none;"></span>
+                        </div><!--b-slider__body-->
+
+                    </div><!--b-slider__i-->
+                </div><!--b-slider-->
+
+                <div class="b-copy">
+
+                    &copy; 2013 - 2020 © 2013 PA "Belorusneft"
+
+                    <a class="b-ph" href="http://iba.by/"></a>
+                    <div class="b-ph-copy">Developed by <a href="http://IBA.by/">IBA</a></div><!--b-ph-copy-->
+
+                </div><!--b-copy-->
+
+            </div><!--h-page-->
+        </div><!--b-footer-->
+        <script src="/sitebeloil/system/modules/by.iba.beloil.templates/resources/js/jquery.min-1.5.js"></script>
+        <script>
+            var $j = jQuery.noConflict();
+
+        </script>
+        <script src="/sitebeloil/system/modules/by.iba.beloil.templates/resources/js/jquery.liquidcarousel.js"></script>
+        <script>
+
+            $j(document).ready(function () {
+                $j('#liquid').liquidcarousel({
+                    duration: 100,
+                    hidearrows: true
+                });
+            });
+        </script>
+
+
+    </div><!--l-page--></div>
+
+
+<!-- Botfaqtor counter -->
+<script>(function () {
+    var randomh = Math.random();
+    var e = document.getElementsByTagName("script")[0];
+    var d = document.createElement("script");
+    d.src = "https://scripts.witstroom.com/watch/663" + "?" + randomh + "";
+    d.type = "text/javascript";
+    d.async = true;
+    d.defer = true;
+    e.parentNode.insertBefore(d, e);
+})();</script>
+<script async id="witstroom_informer" src="https://scripts.witstroom.com/informer/663"></script>
+<!-- /Botfaqtor counter -->
+
+</body>
+</html>
