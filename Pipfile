@@ -18,5 +18,3 @@ beautifulsoup4 = "*"
 dynaconf = {extras = ["yaml"],version = "*"}
 requests = "*"
 
-[requires]
-python_version = "3.7"
