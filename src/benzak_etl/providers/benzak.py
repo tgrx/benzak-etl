@@ -15,7 +15,7 @@ async def extract_fuels(logger, session) -> Dict[Text, int]:
     logger.debug(f"calling Benzak fuel API: {_FUEL_API}")
 
     response: ClientResponse = await session.get(_FUEL_API)
-    logger.debug(f"got response: {response}")
+    logger.debug(f"got response: {response.status} {response.reason}")
 
     if response.status != 200:
         raise RuntimeError(f"failed to get fuels from Benzak API: {response}")
@@ -35,7 +35,7 @@ async def extract_currency(logger, session) -> Dict[Text, int]:
     logger.debug(f"calling Benzak currency API: {_CURRENCY_API}")
 
     response: ClientResponse = await session.get(_CURRENCY_API)
-    logger.debug(f"got response: {response}")
+    logger.debug(f"got response: {response.status} {response.reason}")
 
     if response.status != 200:
         raise RuntimeError(f"failed to get currency from Benzak API: {response}")

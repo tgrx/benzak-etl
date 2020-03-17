@@ -4,6 +4,7 @@ from datetime import date
 from decimal import Decimal
 from typing import Dict
 
+from aiohttp import ClientResponse
 from dynaconf import settings
 
 _PRICE_HISTORY_API = f"{settings.BENZAK_API_URL}/price-history/"
@@ -16,12 +17,16 @@ async def load_price(logger, session, price: Dict):
         f" json={json.dumps(price, indent=2, sort_keys=True)}"
     )
 
-    response = await session.post(
+    response: ClientResponse = await session.post(
         _PRICE_HISTORY_API,
         json=price,
         headers={"AUTHORIZATION": settings.BENZAK_API_TOKEN},
     )
-    logger.debug(f"got response: {response}")
+
+    logger.debug(f"got response: [{response.status} {response.reason}]")
+    if settings.DEBUG and response.status != 201:
+        payload = json.dumps(await response.json(), indent=2, sort_keys=True)
+        logger.debug(f"API response: {payload}")
 
 
 async def load_prices(

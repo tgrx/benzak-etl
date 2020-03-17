@@ -72,7 +72,7 @@ async def extract_html(
     logger.debug(f"sending request with method: {meth.__name__}")
 
     response: ClientResponse = await meth(**kwargs)
-    logger.debug(f"got response: {response}")
+    logger.debug(f"got response: {response.status} {response.reason}")
 
     text = await response.text()
 
