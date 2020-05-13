@@ -1,11 +1,26 @@
 dist: xenial
 language: python
 
-python:
-  - "3.7"
+env:
+  global:
+    - ENV_FOR_DYNACONF=travis
+    - PYTHONPATH=src/
 
 install:
-  - pipenv install --dev
+  - pip install pipenv --upgrade
+  - make venv
 
 script:
-  - ./qa.sh
+  - make test
+
+after_success:
+  - codecov
+
+cache: pip
+
+jobs:
+  include:
+    - stage: test
+      python: '3.8'
+    - stage: test
+      python: '3.7'

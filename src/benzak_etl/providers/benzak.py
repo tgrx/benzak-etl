@@ -23,7 +23,7 @@ async def extract_fuels(logger, session) -> Dict[Text, int]:
     payload = await response.json()
     logger.debug(f"got response payload: {len(payload)} objects")
 
-    logger.debug(f"transforming fuel identities into map")
+    logger.debug("transforming fuel identities into map")
 
     fuel_map = {BenzakFuel(fuel["name"]).name: fuel["id"] for fuel in payload}
     logger.debug(f"transformed {len(fuel_map)} fuels")
@@ -43,7 +43,7 @@ async def extract_currency(logger, session) -> Dict[Text, int]:
     payload = await response.json()
     logger.debug(f"got response payload: {len(payload)} objects")
 
-    logger.debug(f"transforming currency identities into map")
+    logger.debug("transforming currency identities into map")
 
     currency_map = {
         BenzakCurrency(currency["name"]).name: currency["id"] for currency in payload
