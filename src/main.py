@@ -15,6 +15,8 @@ from benzak_etl.load import load_prices
 from benzak_etl.providers import belorusneft
 from benzak_etl.providers import benzak
 from custom_logging import configure_logging
+from safeguards import configure_sentry
+from safeguards import safe
 
 
 async def extract_src_identities(logger, session):
@@ -189,6 +191,7 @@ async def etl(session):
     logger.debug("loaded prices")
 
 
+@safe
 async def run_etl():
     async with aiohttp.ClientSession() as session:
         await etl(session)
@@ -196,5 +199,6 @@ async def run_etl():
 
 if __name__ == "__main__":
     configure_logging()
+    configure_sentry()
     _LOOP = asyncio.get_event_loop()
     _LOOP.run_until_complete(run_etl())

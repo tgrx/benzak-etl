@@ -1,0 +1,12 @@
+[run]
+
+branch = True
+omit =
+    src/custom_logging.py
+    sync_belorusneft_page.py
+source = .
+
+[report]
+
+fail_under = 64
+skip_covered = True

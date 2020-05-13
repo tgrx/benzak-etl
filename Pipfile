@@ -5,9 +5,11 @@ verify_ssl = true
 
 [dev-packages]
 black = "==19.10b0"
+coverage = "*"
 flake8 = "*"
 httpie = "*"
 ipython = "*"
+isort = "*"
 pudb = "*"
 pylint = "*"
 pytest = "*"
@@ -17,3 +19,4 @@ aiohttp = {extras = ["speedups"],version = "*"}
 beautifulsoup4 = "*"
 dynaconf = {extras = ["yaml"],version = "*"}
 requests = "*"
+sentry-sdk = "*"

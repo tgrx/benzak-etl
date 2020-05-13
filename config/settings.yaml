@@ -4,6 +4,7 @@ default:
   BENZAK_API_URL: "https://benzak.herokuapp.com/api/v1"
   DEBUG: false
   FULL_LOAD: false
+  SENTRY_DSN: ""
 
 development:
   BENZAK_API_URL: "http://localhost:8000/api/v1"
