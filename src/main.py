@@ -108,7 +108,7 @@ def extract_prices(logger, session, fuels_map, currency_map) -> List[ExtractTask
                 currency=currency,
             )
 
-            logger.debug(f"created task")
+            logger.debug("created task")
 
             tasks.append(task)
 
@@ -133,7 +133,7 @@ async def etl(session):
     logger.debug("creating extract tasks")
 
     tasks_extract = extract_prices(logger, session, src_fuels, src_currency)
-    logger.debug(f"created {len(tasks_extract)} tasks: extract prices")
+    logger.debug("created {x} tasks: extract prices", x=len(tasks_extract))
 
     logger.debug("creating tasks: load")
 
@@ -141,21 +141,25 @@ async def etl(session):
 
     for task_n, task_extract in enumerate(tasks_extract):
         logger.debug(
-            f"#{task_n}: extracting prices for"
-            f" {task_extract.fuel}, {task_extract.currency}"
+            "#{x}: extracting prices for {y}, {z}",
+            x=task_n,
+            y=task_extract.fuel,
+            z=task_extract.currency,
         )
 
         html = await task_extract.task
-        logger.debug(f"#{task_n}: extracted html: {len(html)} tags")
+        logger.debug("#{x}: extracted html: {y} tags", x=task_n, y=len(html))
 
-        logger.debug(f"#{task_n}: transforming prices")
+        logger.debug("#{x}: transforming prices", x=task_n)
 
         prices = belorusneft.transform_prices(logger, html)
-        logger.debug(f"#{task_n}: transformed prices: {len(prices)}")
+        logger.debug("#{x}: transformed prices: {y}", x=task_n, y=len(prices))
 
         logger.debug(
-            f"#{task_n}: creating load task for"
-            f" {task_extract.fuel}, {task_extract.currency}"
+            "#{}: creating load task for {y}, {z}",
+            x=task_n,
+            y=task_extract.fuel,
+            z=task_extract.currency,
         )
 
         task_load = asyncio.create_task(
@@ -169,16 +173,18 @@ async def etl(session):
         )
         tasks_load.append(task_load)
         logger.debug(
-            f"#{task_n}: created load task for"
-            f" {task_extract.fuel} / {task_extract.currency}"
+            "#{x}: created load task for {y} / {z}",
+            x=task_n,
+            y=task_extract.fuel,
+            z=task_extract.currency,
         )
 
     logger.debug("awaiting load tasks")
 
     for task_n, task_load in enumerate(tasks_load):
-        logger.debug(f"#{task_n}: awaiting load task")
+        logger.debug("#{x}: awaiting load task", x=task_n)
         await task_load
-        logger.debug(f"#{task_n}: completed load task")
+        logger.debug("#{x}: completed load task", x=task_n)
 
     logger.debug("loaded prices")
 

@@ -53,7 +53,7 @@ async def load_prices(
         tasks.append(task)
     logger.debug(f"created {len(tasks)} tasks")
 
-    logger.debug(f"awaiting tasks: load price")
+    logger.debug("awaiting tasks: load price")
 
     for task in tasks:
         await task

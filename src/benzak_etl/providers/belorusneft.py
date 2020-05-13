@@ -84,7 +84,7 @@ async def extract_html(
             f" body: {text},"
         )
 
-    logger.debug(f"transforming body into html")
+    logger.debug("transforming body into html")
 
     html = BeautifulSoup(text, "html.parser")
     logger.debug(f"transformed html: {len(html)} tags")
@@ -130,7 +130,7 @@ def transform_fuels(logger, form: Tag) -> Dict[Text, Text]:
 def transform_currency(logger, form: Tag) -> Dict[Text, Text]:
     result = {}
 
-    logger.debug(f"looking for all <option>")
+    logger.debug("looking for all <option>")
 
     options = form.find_all("option")
     logger.debug(f"found {len(options)} options")
@@ -162,14 +162,14 @@ def transform_prices(logger, html: BeautifulSoup) -> Dict[date, Decimal]:
     header = ()
     parsed_rows = []
 
-    logger.debug(f"parsing table to get table rows <tr>")
+    logger.debug("parsing table to get table rows <tr>")
 
     table_rows = table.find_all("tr")
     logger.debug(f"found {len(table_rows)} <tr>")
 
     for row_number, row in enumerate(table_rows):
         if row_number == 0:
-            logger.debug(f"building header from <th>")
+            logger.debug("building header from <th>")
 
             header = tuple(th.text.strip() for th in row.find_all("th"))
             logger.debug(f"built header: {header}")
@@ -187,7 +187,7 @@ def transform_prices(logger, html: BeautifulSoup) -> Dict[date, Decimal]:
 
         parsed_rows.append(values)
 
-    logger.debug(f"transforming price values to date->price map")
+    logger.debug("transforming price values to date->price map")
 
     prices = {
         datetime.strptime(row["Date"], "%d.%m.%Y"): Decimal(row["Price"])
