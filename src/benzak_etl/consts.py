@@ -41,7 +41,7 @@ class BelorusneftFuel(enum.Enum):
     BN_92 = "BN-92"
     DT_A = "Diesel -32°C"
     DT_E5 = "Diesel Euro 5"
-    LPG = "LPG *"
+    LPG = "LPG"
     RON_92 = "92 RON"
     RON_95 = "95 RON"
     RON_98 = "98 RON"
